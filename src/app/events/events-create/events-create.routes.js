@@ -8,14 +8,10 @@
   routes.$inject = ['$stateProvider'];
 
   function routes($stateProvider) {
-    $stateProvider
-
-    .state('tab.events-create', {
-      url: '/events/create',
-      'tab-events-create': {
-        templateUrl: '/app/events/events-create/events-create.html',
-        controller: 'EventsCreateController as vm'
-      }
+    $stateProvider.state('tab.events.create', {
+      url: '/create',
+      templateUrl: '/app/events/events-create/events-create.html',
+      controller: 'EventsCreateController as vm'
     });
   }
 })();
