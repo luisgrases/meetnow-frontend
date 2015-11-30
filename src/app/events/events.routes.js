@@ -25,8 +25,5 @@
       controller: 'EventsController as vm'
     });
 
-    $stateProvider
-
-    
   }
 })();
