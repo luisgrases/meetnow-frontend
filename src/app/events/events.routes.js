@@ -8,16 +8,25 @@
   routes.$inject = ['$stateProvider'];
 
   function routes($stateProvider) {
-    $stateProvider
 
-    .state('tab.events', {
+    $stateProvider.state('tab.events', {
+      abstract: true,
       url: '/events',
       views: {
         'tab-events': {
-          templateUrl: 'app/events/events.html',
-          controller: 'EventsController as vm'
+          template: '<ion-nav-view></ion-nav-view>'
         }
       }
     });
+
+    $stateProvider.state('tab.events.index', {
+      url: '',
+      templateUrl: 'app/events/events.html',
+      controller: 'EventsController as vm'
+    });
+
+    $stateProvider
+
+    
   }
 })();
