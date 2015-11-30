@@ -1,11 +1,11 @@
-This is an alternative project structure for the [Ionic Framework](http://ionicframework.com/) demonstrated with the ionic tabs starter.
+This is the front-end repository for the Meetnow application. Please make sure you are running the server before running this project. You can find it in the following link: https://github.com/luisgrases/meetnow-backend
 
 ## How to use this project
 
 To use this starter create a new project folder (e.g. 'myApp') for your app and clone this repository into it.
 ```bash
 $ cd mkdir myApp
-$ git clone https://github.com/flavordaaave/ionic_better_structure.git
+$ git clone https://github.com/luisgrases/meetnow-frontend
 ```
 
 Then run npm and bower to get all needed dependencies:
