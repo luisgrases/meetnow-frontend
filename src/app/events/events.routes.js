@@ -25,11 +25,5 @@
       controller: 'EventsController as vm'
     });
 
-    $stateProvider.state('tab.events.create', {
-      url: '/create',
-      templateUrl: '/app/events/events-create/events-create.html',
-      controller: 'EventsCreateController as vm'
-    });
-
   }
 })();

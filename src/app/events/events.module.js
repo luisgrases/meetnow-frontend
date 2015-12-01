@@ -3,7 +3,8 @@
 
   angular
     .module('app.events', [
-      'ionic'
+      'ionic',
+      'app.events.create'
       
     ]);
 
