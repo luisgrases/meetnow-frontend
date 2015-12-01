@@ -12,6 +12,7 @@
     var service = {
       all: all,
       remove: remove,
+      create: create,
       get: get
     };
     return service;
@@ -21,6 +22,10 @@
     function all() {
       // Might use a resource here that returns a JSON array
       return events;
+    }
+
+    function create(event) {
+      events.push(event);
     }
 
     function remove(event) {

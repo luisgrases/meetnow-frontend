@@ -1,6 +1,6 @@
 <ion-view view-title="Create Meet">
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="vm.createEvent()">
+        <button class="button" ng-click="vm.create(vm.newEvent)">
             Create
         </button>
     </ion-nav-buttons>
@@ -10,17 +10,18 @@
                 Create Meet
             </div>
             <label class="item item-input">
-                <input type="text" placeholder="Title">
+                <input ng-model="vm.newEvent.title" type="text" placeholder="Title">
             </label>
             <label class="item item-input">
-                <textarea placeholder="Description"></textarea>
+                <textarea ng-model="vm.newEvent.description" placeholder="Description"></textarea>
             </label>
             <div class="item item-divider"></div>
             <label class="item item-input">
-                <input type="text" placeholder="Place">
+                <input ng-model="vm.newEvent.place" type="text" placeholder="Place">
+                
             </label>
             <label class="item item-input">
-                <input type="date" placeholder="Title">
+                <input ng-model="vm.newEvent.date" type="date" placeholder="Title">
             </label>
             <div class="item item-divider"></div>
             <ion-item class="item-icon-right">
@@ -30,10 +31,11 @@
             <ion-item>
                 <div class="row">
                     <div class="col col-30">Assisting Limit</div>
-                    <div class="col col-20">{{vm.range}}</div>
+                    <div class="col col-10"></div>
+                    <div class="col col-10">{{vm.newEvent.assistLimit}}</div>
                     <div class="range range-positive col-50">
                         <i class="icon ion-ios-sunny-outline"></i>
-                        <input ng-model="vm.range" type="range" name="volume" min="0" max="100">
+                        <input ng-model="vm.newEvent.assistLimit" type="range" name="volume" min="0" max="100">
                         <i class="icon ion-ios-sunny"></i>
                     </div>
                 </div>
