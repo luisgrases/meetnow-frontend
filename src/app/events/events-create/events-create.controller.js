@@ -10,6 +10,7 @@
   /* @ngInject */
   function EventsCreateController(EventsService) {
     var vm = this;
+    vm.range = 0;
     vm.create = create;
 
     activate();
