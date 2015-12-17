@@ -5,10 +5,10 @@
     .module('app.events.create')
     .controller('EventsCreateController', EventsCreateController);
 
-  EventsCreateController.$inject = ['EventsService'];
+  EventsCreateController.$inject = ['EventsService', '$state'];
 
   /* @ngInject */
-  function EventsCreateController(EventsService) {
+  function EventsCreateController(EventsService, $state) {
     var vm = this;
     vm.goToInvitePeopleView = goToInvitePeopleView;
     vm.create = create;
