@@ -8,8 +8,8 @@
   routes.$inject = ['$stateProvider'];
 
   function routes($stateProvider) {
-    $stateProvider.state('tab.events.create.invite', {
-      url: '/invite',
+    $stateProvider.state('tab.events.invite', {
+      url: 'create/invite',
       templateUrl: 'app/events/events-create/events-create-invite/events-create-invite.html',
       controller: 'EventsCreateInviteController as vm'
     });
