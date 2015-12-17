@@ -10,7 +10,7 @@
   function routes($stateProvider) {
     $stateProvider.state('tab.events.detail', {
       url: '/:event',
-      templateUrl: 'app/events/events-detail.html',
+      templateUrl: 'app/events/event-detail/event-detail.html',
       controller: 'EventsDetailController as vm'
     });
   }

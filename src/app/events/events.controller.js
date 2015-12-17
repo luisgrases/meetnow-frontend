@@ -13,6 +13,7 @@
     vm.events = EventsService.all();
     vm.remove = remove;
     vm.transition = transition;
+    vm.goToDetailed = goToDetailed;
 
     activate();
 
@@ -23,6 +24,10 @@
 
     function transition(){
       $state.go("tab.events.create");
+    };
+
+    function goToDetailed(event){
+      $state.go("tab.events.detail", {event: event.id});
     };
 
     function remove(event) {
