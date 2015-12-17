@@ -2,9 +2,8 @@
   'use strict';
 
   angular
-    .module('app.events.create', [
-      'ionic',
-      'app.events.create.invite'
+    .module('app.events.create.invite', [
+      'ionic'
     ]);
 
 })();
