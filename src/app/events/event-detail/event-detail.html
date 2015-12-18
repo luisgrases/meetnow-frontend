@@ -1,0 +1,36 @@
+<ion-view view-title="Meet Details">
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="vm.create(vm.newEvent)">
+            Create
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list card">
+            <ion-item class="item-icon-left">
+                <i class="icon ion-email"></i>
+                {{vm.currentEvent.title}}
+            </ion-item>
+            <div class="item item-text-wrap">
+                This is a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains an item that has wrapping text.This is a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains an a basic Card which contains 
+            </div>
+            
+        </div>
+         <div class="card">
+            <div class="button-bar">
+              <a class="button">Assisting</a>
+              <a class="button">Can't assist</a>
+              <a class="button">Third</a>
+            </div>
+        </div>
+
+        <div class="list card">
+            <ion-item class="item-icon-left">
+                <i class="icon ion-email"></i>
+                {{vm.currentEvent.title}}
+            </ion-item>
+            <ion-item class="item-icon-left">
+                <i class="icon ion-email"></i>
+                {{vm.currentEvent.title}}
+            </ion-item>
+    </ion-content>
+</ion-view>
