@@ -5,7 +5,7 @@
     .module('app.contacts.add')
     .controller('ContactsAddController', ContactsAddController);
 
-  ContactsController.$inject = ['ContactsService'];
+  ContactsAddController.$inject = ['ContactsService'];
 
   /* @ngInject */
   function ContactsAddController(ContactsService) {
