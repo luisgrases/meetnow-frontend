@@ -3,7 +3,8 @@
 
   angular
     .module('app.events.detail', [
-      'ionic'
+      'ionic',
+      'app.events.detail.edit'
     ]);
 
 })();
