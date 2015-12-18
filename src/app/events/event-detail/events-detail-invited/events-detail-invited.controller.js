@@ -10,7 +10,7 @@
   function EventsDetailInvitedController(EventsService, $stateParams, ContactsService) {
     var vm = this;
     vm.currentEvent = EventsService.get($stateParams.eventId);
-    vm.invitedStatus = $stateParams.statusId;
+    vm.invitedStatus = $stateParams.invitedStatus;
     ////////////////
   }
 
