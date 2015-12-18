@@ -13,6 +13,7 @@
     vm.currentEvent = EventsService.get($stateParams.eventId);
     vm.goToEdit = goToEdit;
     vm.goToInvite = goToInvite;
+    vm.goToInvited = goToInvited;
     ////////////////
 
     function goToEdit(){
@@ -21,7 +22,11 @@
 
     function goToInvite(){
       $state.go("tab.events.extrainvite", {eventId: vm.currentEvent.id});
-
     }
+
+    function goToInvited(status){
+      $state.go("tab.events.invited", {eventId: vm.currentEvent.id, invitedStatus: status });
+    }
+
   }
 })();
