@@ -8,16 +8,25 @@
   routes.$inject = ['$stateProvider'];
 
   function routes($stateProvider) {
-    $stateProvider
 
-    .state('tab.contacts', {
+    $stateProvider.state('tab.contacts', {
+      abstract: true,
       url: '/contacts',
       views: {
         'tab-contacts': {
-          templateUrl: 'app/contacts/contacts.html',
-          controller: 'ContactsController as vm'
+          template: '<ion-nav-view></ion-nav-view>'
         }
       }
     });
+
+    $stateProvider.state('tab.contacts.index', {
+      url: '',
+      templateUrl: 'app/contacts/contacts.html',
+      controller: 'ContactsController as vm'
+    });
+
+
+
+
   }
 })();
