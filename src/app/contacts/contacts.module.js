@@ -2,7 +2,8 @@
   'use strict';
   angular
     .module('app.contacts', [
-      'ionic'
+      'ionic',
+      'app.contacts.add'
     ]);
 
 })();
