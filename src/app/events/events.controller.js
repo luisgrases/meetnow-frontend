@@ -27,7 +27,7 @@
     };
 
     function goToDetailed(event){
-      $state.go("tab.events.detail", {event: event.id});
+      $state.go("tab.events.detail", {eventId: event.id});
     };
 
     function remove(event) {

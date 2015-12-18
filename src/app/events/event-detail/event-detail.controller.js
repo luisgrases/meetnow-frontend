@@ -5,11 +5,16 @@
     .module('app.events.detail')
     .controller('EventsDetailController', EventsDetailController);
 
-  EventsDetailController.$inject = ['EventsService', '$state'];
+  EventsDetailController.$inject = ['EventsService', '$stateParams'];
 
   /* @ngInject */
-  function EventsDetailController(EventsService, $state) {
+  function EventsDetailController(EventsService, $stateParams) {
     var vm = this;
+    vm.currentEvent = EventsService.get($stateParams.eventId);
+
+
+
+    
 
 
     ////////////////
