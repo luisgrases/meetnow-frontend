@@ -9,7 +9,7 @@
 
   function routes($stateProvider) {
     $stateProvider.state('tab.events.invited', {
-      url: '/:eventId/invite',
+      url: '/:eventId/:invitedStatus',
       templateUrl: 'app/events/event-detail/events-detail-invited/events-detail-invited.html',
       controller: 'EventsDetailInvitedController as vm'
     });
