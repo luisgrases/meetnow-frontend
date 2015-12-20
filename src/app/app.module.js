@@ -12,6 +12,7 @@
       /* Feature areas */
       'app.account',
       'app.registration',
+      'app.authentication',
       'app.contacts',
       'app.events'
 
