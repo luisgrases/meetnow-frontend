@@ -5,10 +5,17 @@
   .module('app.registration')
   .controller('RegistrationController', RegistrationController);
 
-  RegistrationController.$inject = [];
+  RegistrationController.$inject = ['$auth'];
 
   /* @ngInject */
-  function RegistrationController() {
+  function RegistrationController($auth) {
     var vm = this;
+    vm.registerUser = registerUser;
+
+    function registerUser(){
+      console.log("Registering user...")
+      console.log(vm.registrationForm.password);
+      $auth.submitRegistration(vm.registrationForm);
+    };
   }
 })();

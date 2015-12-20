@@ -5,6 +5,7 @@
     .module('app', [
       /* Shared modules */
       'ionic',
+      'ng-token-auth',
       'app.core',
       'app.directives',
 

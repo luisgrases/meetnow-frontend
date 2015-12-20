@@ -5,10 +5,12 @@
     .module('app')
     .config(configure);
 
-  configure.$inject = [];
+  configure.$inject = ['$authProvider'];
 
-  function configure () {
-    // Add your configuration here
+  function configure ($authProvider) {
+    $authProvider.configure({
+            apiUrl: 'http://localhost:3000'
+        });
   }
 
 })();
