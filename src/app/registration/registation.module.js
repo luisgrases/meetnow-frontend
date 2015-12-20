@@ -3,6 +3,7 @@
 
   angular
     .module('app.registration', [
-      'ionic'
+      'ionic',
+      'ng-token-auth'
     ]);
 })();
