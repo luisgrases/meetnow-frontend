@@ -1,0 +1,13 @@
+<ion-view view-title="Registration">
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <input type="email" name="email" ng-model="vm.loginForm.email" placeholder="Email">
+            </label>
+            <label class="item item-input">
+                <input ng-model="vm.loginForm.password" type="password" name="password" placeholder="Password">
+            </label>
+        </div>
+        <button class="button button-full button-positive" ng-click="vm.registerUser()">Register</button>
+    </ion-content>
+</ion-view>
