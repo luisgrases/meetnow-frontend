@@ -10,6 +10,5 @@
   /* @ngInject */
   function RegistrationController() {
     var vm = this;
-
   }
 })();

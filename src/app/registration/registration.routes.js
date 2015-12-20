@@ -10,7 +10,7 @@
   function routes($stateProvider) {
     $stateProvider
 
-    .state('tab.registration', {
+    .state('registration', {
       url: '/registration',
       templateUrl: 'app/registration/registration.html',
       controller: 'RegistrationController as vm'
