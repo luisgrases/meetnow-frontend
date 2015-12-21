@@ -5,24 +5,27 @@
     .module('app.events')
     .factory('EventsService', eventsService);
 
-  eventsService.$inject = [];
+  eventsService.$inject = ['$http'];
 
   /* @ngInject */
-  function eventsService() {
+  function eventsService($http) {
     var service = {
       all: all,
       remove: remove,
       create: create,
-      get: get
+      get: get,
+      results: null
     };
     return service;
 
     ////////////////
 
     function all() {
-      // Might use a resource here that returns a JSON array
-      return events;
-    }
+      $http.get('http://localhost:3000/api/events')
+      .then(function(results){
+        console.log(results);
+      });
+    };
 
     function create(event) {
       events.push(event);

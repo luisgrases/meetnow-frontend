@@ -13,14 +13,12 @@
     vm.signInUser = signInUser;
 
     $rootScope.$on('auth:login-success', function(ev, user) {
-      alert('Welcome ', user.email);
-      console.log(user);
     });
 
       function signInUser() {
       $auth.submitLogin(vm.loginForm)
         .then(function(resp) {
-          console.log("Login Succesfully")
+          console.log(resp)
         })
         .catch(function(resp) {
           console.log("Login Problem")

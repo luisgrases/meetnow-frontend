@@ -10,12 +10,13 @@
   /* @ngInject */
   function EventsController(EventsService, $state) {
     var vm = this;
-    vm.events = EventsService.all();
     vm.remove = remove;
     vm.transition = transition;
     vm.goToDetailed = goToDetailed;
+    vm.EventsService = EventsService;
 
     activate();
+    vm.EventsService.all();
 
     ////////////////
 
