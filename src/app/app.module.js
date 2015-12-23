@@ -13,6 +13,7 @@
       'app.account',
       'app.registration',
       'app.authentication',
+      'app.session',
       'app.contacts',
       'app.events'
 
