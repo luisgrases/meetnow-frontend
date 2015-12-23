@@ -5,10 +5,10 @@
   .module('app.authentication')
   .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$auth','$rootScope' ];
+  AuthenticationController.$inject = ['$auth','$rootScope', 'Session'];
 
   /* @ngInject */
-  function AuthenticationController($auth, $rootScope) {
+  function AuthenticationController($auth, $rootScope, Session) {
     var vm = this;
     vm.signInUser = signInUser;
 
@@ -17,10 +17,10 @@
 
       function signInUser() {
       $auth.submitLogin(vm.loginForm)
-        .then(function(resp) {
-          console.log(resp)
+        .then(function(response) {
+         Session.create(response.id);
         })
-        .catch(function(resp) {
+        .catch(function(response) {
           console.log("Login Problem")
         });
     };
