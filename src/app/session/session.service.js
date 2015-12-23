@@ -5,7 +5,7 @@ angular
     .module('app.session', [])
     .service('Session', function () {
       var vm = this;
-  this.create = function (sessionId, userId, userRole) {
+  vm.create = function (sessionId, userId, userRole) {
     vm.id = sessionId;
     vm.userId = userId;
     vm.userRole = userRole;
