@@ -27,8 +27,11 @@
       });
     };
 
-    function create(event) {
-      events.push(event);
+    function create() {
+      $http.post('http://localhost:3000/api/events')
+      .then(function(results) {
+        console.log(results);
+      });
     }
 
     function remove(event) {
