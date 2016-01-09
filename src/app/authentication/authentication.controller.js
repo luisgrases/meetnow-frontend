@@ -16,9 +16,11 @@
     });
 
       function signInUser() {
+        console.log(Session.activeSession());
       $auth.submitLogin(vm.loginForm)
         .then(function(response) {
          Session.create(response.id);
+
         })
         .catch(function(response) {
           console.log("Login Problem")
