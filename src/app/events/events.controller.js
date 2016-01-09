@@ -15,13 +15,9 @@
     vm.goToDetailed = goToDetailed;
     vm.EventsService = EventsService;
 
-    activate();
     vm.EventsService.all();
 
     ////////////////
-
-    function activate() {
-    }
 
     function transition(){
       $state.go("tab.events.create");
