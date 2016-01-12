@@ -9,21 +9,22 @@
 
   /* @ngInject */
   function eventsService($http) {
-    var service = {
+    var _model = {
       all: all,
       remove: remove,
       create: create,
       get: get,
       results: null
     };
-    return service;
+    return _model;
 
     ////////////////
 
     function all() {
       $http.get('http://localhost:3000/api/events')
       .then(function(results){
-        console.log(results);
+        console.log(results.data);
+        _model.results = results.data;
       });
     };
 
