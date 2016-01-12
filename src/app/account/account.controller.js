@@ -5,20 +5,27 @@
   .module('app.account')
   .controller('AccountController', AccountController);
 
-  AccountController.$inject = [];
+  AccountController.$inject = ['$auth', '$state'];
 
   /* @ngInject */
-  function AccountController() {
+  function AccountController($auth, $state) {
     var vm = this;
+    vm.signOutUser = signOutUser;
     vm.settings = {
       enableFriends: true
     };
 
-    activate();
-
     ////////////////
 
-    function activate() {
-		}
+    function signOutUser()  {
+      $auth.signOut()
+        .then(function(resp) {
+          $state.go("authentication");
+        })
+        .catch(function(resp) {
+          // handle error response
+        });
+    }
+
   }
 })();

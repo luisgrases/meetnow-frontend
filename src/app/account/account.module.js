@@ -3,6 +3,7 @@
 
 	angular
 		.module('app.account', [
-			'ionic'
+			'ionic',
+      'ng-token-auth'
 		]);
 })();
