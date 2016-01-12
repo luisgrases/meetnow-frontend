@@ -18,13 +18,18 @@
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'app/layout/tabs.html'
+      templateUrl: 'app/layout/tabs.html',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
     });
 
     // Each tab has its own nav history stack which is defined in the corresponding module.
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/events');
+    $urlRouterProvider.otherwise('/sign_in');
   }
 
 })();
