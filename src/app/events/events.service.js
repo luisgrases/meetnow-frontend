@@ -40,9 +40,9 @@
     }
 
     function get(eventId) {
-      for (var i = 0; i < events.length; i++) {
-        if (events[i].id === parseInt(eventId)) {
-          return events[i];
+      for (var i = 0; i < _model.results.length; i++) {
+        if (_model.results[i].id === parseInt(eventId)) {
+          return _model.results[i];
         }
       }
       return null;
