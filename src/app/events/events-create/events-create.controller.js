@@ -31,6 +31,7 @@
 
     function create(event) {
       EventsService.create(event);
+      EventsService.all;
     }
 
   }

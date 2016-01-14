@@ -28,8 +28,8 @@
       });
     };
 
-    function create() {
-      $http.post('http://localhost:3000/api/events')
+    function create(event) {
+      $http.post('http://localhost:3000/api/events', event)
       .then(function(results) {
         console.log(results);
       });
