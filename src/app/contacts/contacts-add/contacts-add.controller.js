@@ -11,5 +11,9 @@
   function ContactsAddController(ContactsService) {
     var vm = this;
     ////////////////
+
+    function searchPeople(){
+      
+    }
   }
 })();

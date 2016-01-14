@@ -5,51 +5,32 @@
     .module('app.contacts')
     .factory('ContactsService', contactsService);
 
-  contactsService.$inject = [];
+  contactsService.$inject = ['$http'];
 
   /* @ngInject */
-  function contactsService() {
-    var service = {
+  function contactsService($http) {
+    var _model = {
       all: all,
-      get: get
+      results: null
     };
-    return service;
+    return _model;
 
     ////////////////
 
     function all() {
-      // Might use a resource here that returns a JSON array
-      return contacts;
+      $http.get('http://localhost:3000/api/friendships')
+      .then(function(results) {
+        console.log(results.data);
+        _model.results = results.data;
+      });
     };
 
+    function search() {}
+    function add() {}
+    function remove() {}
+    function accept() {}
+    function reject() {}
 
-    function get(eventId) {
-      for (var i = 0; i < contacts.length; i++) {
-        if (contacts[i].id === parseInt(eventId)) {
-          return contacts[i];
-        }
-      }
-      return null;
-    }
   }
-
-  // Some fake testing data
-  var contacts = [{
-      id: 0,
-      name: 'Luis Grases',
-      username: 'luisgrases'
-    }, {
-      id: 1,
-      name: 'Juan Grases',
-      username: 'juangrases'
-    }, {
-      id: 2,
-      name: 'John Hall',
-      username: 'johnhall'
-    }, {
-      id: 3,
-      name: 'Mike Won',
-      username: 'mikewon'
-    }];
 
 })();

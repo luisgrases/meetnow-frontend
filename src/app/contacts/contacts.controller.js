@@ -10,11 +10,11 @@
   /* @ngInject */
   function ContactsController(ContactsService, $state) {
     var vm = this;
-    vm.contacts = ContactsService.all();
     vm.remove = remove;
     vm.goToAddContacts = goToAddContacts;
+    vm.ContactsService = ContactsService;
 
-    activate();
+    vm.ContactsService.all();
 
     ////////////////
 
