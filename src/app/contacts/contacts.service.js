@@ -10,22 +10,52 @@
   /* @ngInject */
   function contactsService($http) {
     var _model = {
-      all: all,
-      results: null
+      accepted: accepted,
+      requestsSent: requestsSent,
+      requestsRecieved: requestsRecieved,
+      search: search,
+      acceptedResults: null,
+      requestsSentResults: null,
+      requestsRecievedResults: null,
+      searchResults: null
     };
     return _model;
 
     ////////////////
 
-    function all() {
-      $http.get('http://localhost:3000/api/friendships')
+    function accepted() {
+      $http.get('http://localhost:3000/api/friendships/accepted')
       .then(function(results) {
         console.log(results.data);
-        _model.results = results.data;
+        _model.acceptedResults = results.data;
       });
     };
 
-    function search() {}
+    function requestsSent() {
+      $http.get('http://localhost:3000/api/friendships/requests_sent')
+      .then(function(results) {
+        console.log(results.data);
+        _model.requestsSentResults = results.data;
+      });
+    };
+
+    function requestsRecieved() {
+      $http.get('http://localhost:3000/api/friendships/requests_recieved')
+      .then(function(results) {
+        console.log(results.data);
+        _model.requestsRecievedResults = results.data;
+      });
+    };
+
+
+
+    function search(searchTerm) {
+      $http.get('http://localhost:3000/api/users/search?searchTerm=' + searchTerm)
+      .then(function(results) {
+        console.log(results.data);
+        _model.searchResults = results.data;
+      });
+    }
     function add() {}
     function remove() {}
     function accept() {}

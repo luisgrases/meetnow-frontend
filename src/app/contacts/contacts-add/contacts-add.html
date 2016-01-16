@@ -3,10 +3,52 @@
         <div class="bar bar-header item-input-inset">
             <label class="item-input-wrapper">
                 <i class="icon ion-ios-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
-            </label>
+                <input type="search" placeholder="Search" ng-model="vm.searchTerm" ng-change="vm.search()">
+            </label>     
+        </div>
+        <div class="item item-divider">
+            Search Results
         </div>
         <ion-list>
+        <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.searchResults" type="item-text-wrap">
+                <h2>{{contact.uid}}</h2>
+                <button class="button button-positive">
+                  <i class="icon ion-ios-telephone"></i>
+                </button>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider">
+            Requests Recieved
+        </div>
+        <ion-list ng-hide="vm.searchTerm == ''">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.requestsRecievedResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+                <h2>{{contact.uid}}</h2>
+                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider">
+            Requests Sent
+        </div>
+        <ion-list ng-hide="vm.searchTerm == ''">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.requestsSentResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+                <h2>{{contact.uid}}</h2>
+                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider">
+            Contacts
+        </div>
+        <ion-list ng-hide="vm.searchTerm == ''">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.acceptedResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+                <h2>{{contact.uid}}</h2>
+                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

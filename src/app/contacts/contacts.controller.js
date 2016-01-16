@@ -14,7 +14,9 @@
     vm.goToAddContacts = goToAddContacts;
     vm.ContactsService = ContactsService;
 
-    vm.ContactsService.all();
+    vm.ContactsService.accepted();
+    vm.ContactsService.requestsSent();
+    vm.ContactsService.requestsRecieved();
 
     ////////////////
 

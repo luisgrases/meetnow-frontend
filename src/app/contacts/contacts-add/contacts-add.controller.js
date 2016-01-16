@@ -10,10 +10,15 @@
   /* @ngInject */
   function ContactsAddController(ContactsService) {
     var vm = this;
+    vm.search = search;
+    vm.ContactsService = ContactsService;
+    vm.searchTerm = '';
     ////////////////
 
-    function searchPeople(){
-      
+
+    function search() {
+      ContactsService.search(vm.searchTerm);
     }
+
   }
 })();
