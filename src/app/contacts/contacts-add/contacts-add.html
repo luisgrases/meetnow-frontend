@@ -12,7 +12,7 @@
         <ion-list>
         <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.searchResults" type="item-text-wrap">
                 <h2>{{contact.uid}}</h2>
-                <button class="button button-positive">
+                <button class="button button-positive" ng-click="vm.addContact(contact)">
                   <i class="icon ion-ios-telephone"></i>
                 </button>
             </ion-item>

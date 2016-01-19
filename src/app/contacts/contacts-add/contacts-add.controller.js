@@ -11,6 +11,7 @@
   function ContactsAddController(ContactsService) {
     var vm = this;
     vm.search = search;
+    vm.addContact = addContact;
     vm.ContactsService = ContactsService;
     vm.searchTerm = '';
     ////////////////
@@ -20,5 +21,8 @@
       ContactsService.search(vm.searchTerm);
     }
 
+    function addContact(contact){
+      ContactsService.addContact(contact);
+    } 
   }
 })();

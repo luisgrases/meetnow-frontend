@@ -13,6 +13,7 @@
       accepted: accepted,
       requestsSent: requestsSent,
       requestsRecieved: requestsRecieved,
+      addContact: addContact,
       search: search,
       acceptedResults: null,
       requestsSentResults: null,
@@ -47,7 +48,12 @@
       });
     };
 
-
+    function addContact(contact){
+      $http.post('http://localhost:3000/api/friendships', contact)
+      .then(function(results) {
+        console.log(results);
+      });
+    }
 
     function search(searchTerm) {
       $http.get('http://localhost:3000/api/users/search?searchTerm=' + searchTerm)
