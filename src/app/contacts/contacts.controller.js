@@ -13,6 +13,7 @@
     vm.goToAddContacts = goToAddContacts;
     vm.ContactsService = ContactsService;
     vm.requestRecievedActionSheet = requestRecievedActionSheet;
+    vm.removeContact = removeContact;
     ContactsService.reloadContacts();
 
     ////////////////
@@ -29,6 +30,11 @@
       ContactsService.reloadContacts();
     }
 
+    function removeContact(contact){
+      vm.ContactsService.reject(contact);
+      ContactsService.reloadContacts();
+    }
+
     function requestRecievedActionSheet(contact){
     $ionicActionSheet.show({
      buttons: [
@@ -41,8 +47,7 @@
           // add cancel code..
         },
     destructiveButtonClicked: function() {
-      ContactsService.reject(contact);
-      ContactsService.reloadContacts();
+      removeContact(contact);
       return true
     },
      buttonClicked: function() {
