@@ -22,9 +22,8 @@
         <ion-list>
             <ion-item class="item-remove-animate" ng-repeat="requestSent in vm.ContactsService.requestsSentResults" type="item-text-wrap">
                 <h2>{{requestSent.uid}}</h2>
-
-                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
-                    Delete
+                <ion-option-button class="button-assertive" ng-click="vm.removeContact(requestSent)">
+                    Cancel
                 </ion-option-button>
             </ion-item>
         </ion-list>
