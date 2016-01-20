@@ -10,11 +10,11 @@
   /* @ngInject */
   function contactsService($http) {
     var _model = {
-      accepted: accepted,
-      requestsSent: requestsSent,
-      requestsRecieved: requestsRecieved,
+      accept: accept,
+      reject: reject,
       addContact: addContact,
       search: search,
+      reloadContacts: reloadContacts,
       acceptedResults: null,
       requestsSentResults: null,
       requestsRecievedResults: null,
@@ -23,6 +23,12 @@
     return _model;
 
     ////////////////
+
+    function reloadContacts(){
+      accepted();
+      requestsSent();
+      requestsRecieved();
+    }
 
     function accepted() {
       $http.get('http://localhost:3000/api/friendships/accepted')
@@ -62,10 +68,20 @@
         _model.searchResults = results.data;
       });
     }
-    function add() {}
+
     function remove() {}
-    function accept() {}
-    function reject() {}
+    function accept(contact) {
+      $http.post('http://localhost:3000/api/friendships/accept', contact)
+      .then(function(results) {
+        console.log(results);
+      });
+    }
+    function reject(contact) {
+      $http.delete('http://localhost:3000/api/friendships/' + contact.id)
+      .then(function(results) {
+        console.log(results);
+      });
+    }
 
   }
 

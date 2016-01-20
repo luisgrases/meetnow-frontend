@@ -23,6 +23,8 @@
 
     function addContact(contact){
       ContactsService.addContact(contact);
+      search();
+      ContactsService.reloadContacts();
     } 
   }
 })();
