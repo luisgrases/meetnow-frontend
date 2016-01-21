@@ -12,10 +12,7 @@
     var vm = this;
     vm.goToInvitePeopleView = goToInvitePeopleView;
     vm.create = create;
-    vm.newEvent = {
-      assistLimit: 0
-    };
-
+    vm.EventsService = EventsService;
     vm.create = create;
 
     activate();
