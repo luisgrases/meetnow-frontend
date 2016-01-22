@@ -15,22 +15,26 @@
             <label class="item item-input">
                 <textarea ng-model="vm.EventsService.newEvent.description" placeholder="Description"></textarea>
             </label>
-            
             <div class="item item-divider"></div>
             <ion-item class="item-icon-right" ng-click="vm.goToInvitePeopleView()">
-                Invite People
+                Invite Contacts
+                <div class="centeredData">
+                {{vm.EventsService.newEvent.users.length}}
+                </div>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
-            <ion-item>
-                <div class="row">
-                    <div class="col col-30">Assisting Limit</div>
-                    <div class="col col-10"></div>
-                    <div class="col col-10">{{vm.EventsService.newEvent.assist_limit}}</div>
-                    <div class="range range-positive col-50">
-                        <i class="icon ion-ios-sunny-outline"></i>
-                        <input ng-model="vm.newEvent.assistLimit" type="range" name="volume" min="0" max="100">
-                        <i class="icon ion-ios-sunny"></i>
-                    </div>
+            <ion-item class="item-button-right">
+                Assist Limit 
+                <div class="centeredData">
+                {{vm.EventsService.newEvent.assistLimit}}
+                </div>
+                <div class="buttons">
+                    <button class="button button-energized">
+                        <i class="icon ion-minus-round"></i>
+                    </button>
+                    <button class="button button-dark">
+                        <i class="icon ion-plus-round"></i>
+                    </button>
                 </div>
             </ion-item>
         </ion-list>
