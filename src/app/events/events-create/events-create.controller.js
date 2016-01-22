@@ -22,6 +22,8 @@
     function activate() {
     }
 
+
+
     function goToInvitePeopleView(){
       $state.go("tab.events.invite");
     };

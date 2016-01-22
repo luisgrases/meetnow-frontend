@@ -1,7 +1,24 @@
 <ion-view view-title="Invite People">
     <ion-content>
         <ion-list>
-          <ion-item>Friend</ion-item>
+          <div class="item item-divider">
+              Invited
+          </div>
+          <ion-item class="item-button-right" ng-repeat="contact in vm.EventsService.newEvent.users">
+              {{contact.uid}}
+               <button class="button button-posistive" ng-click="vm.uninviteContact(contact)">
+              <i class="icon ion-ios-telephone"></i>
+            </button>
+          </ion-item>
+          <div class="item item-divider">
+              Contacts
+          </div>
+          <ion-item class="item-button-right" ng-repeat="contact in vm.ContactsService.acceptedResults" ng-hide="contact.hide">    
+            {{contact.uid}}
+            <button class="button button-posistive" ng-click="vm.inviteContact(contact)">
+              <i class="icon ion-ios-telephone"></i>
+            </button>
+          </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

@@ -16,7 +16,8 @@
       get: get,
       results: null,
       newEvent: {
-        assistLimit: 0
+        assistLimit: 0,
+        users: []
       },
     };
     return _model;
