@@ -16,7 +16,7 @@
       get: get,
       results: null,
       newEvent: {
-        assistLimit: 0,
+        assist_limit: 0,
         users: []
       },
     };

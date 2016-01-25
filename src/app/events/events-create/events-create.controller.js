@@ -14,7 +14,8 @@
     vm.create = create;
     vm.EventsService = EventsService;
     vm.create = create;
-
+    vm.increaseAssistLimit = increaseAssistLimit;
+    vm.decreaseAssistLimit = decreaseAssistLimit;
     activate();
 
     ////////////////
@@ -31,6 +32,18 @@
     function create(event) {
       EventsService.create(event);
       EventsService.all;
+    }
+
+    function increaseAssistLimit(){
+      if (EventsService.newEvent.assist_limit < 200) {
+       EventsService.newEvent.assist_limit += 1;
+      }
+    }
+
+    function decreaseAssistLimit(){
+      if (EventsService.newEvent.assist_limit > 0) { 
+        EventsService.newEvent.assist_limit -= 1;
+      }
     }
 
   }
