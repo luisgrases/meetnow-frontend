@@ -10,10 +10,10 @@
     <ion-content>
         <div class="list card">
             <ion-item class="item-icon-left">
-                <i class="icon ion-email"></i> {{vm.currentEvent.title}}
+                <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.title}}
             </ion-item>
             <div class="item item-text-wrap">
-                {{vm.currentEvent.description}}
+                {{vm.EventsService.currentEvent.description}}
             </div>
         </div>
         <div class="card">
@@ -25,10 +25,10 @@
         </div>
         <div class="list card">
             <ion-item class="item-icon-left">
-                <i class="icon ion-email"></i> {{vm.currentEvent.status}}
+                <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.status}}
             </ion-item>
             <ion-item class="item-icon-left">
-                <i class="icon ion-email"></i> {{vm.currentEvent.admin}}
+                <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.admin}}
             </ion-item>
         </div>
     </ion-content>

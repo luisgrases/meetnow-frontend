@@ -10,23 +10,23 @@
   /* @ngInject */
   function EventsDetailController(EventsService, $stateParams, $state) {
     var vm = this;
-    vm.currentEvent = EventsService.get($stateParams.eventId);
     vm.goToEdit = goToEdit;
     vm.goToInvite = goToInvite;
     vm.goToInvited = goToInvited;
+    vm.EventsService = EventsService;
     ////////////////
-    EventsService.invitedPeopleCounter(vm.currentEvent);
+    EventsService.get($stateParams.eventId);
 
     function goToEdit(){
-      $state.go("tab.events.edit", {eventId: vm.currentEvent.id});
+      $state.go("tab.events.edit", {eventId: EventsService.currentEvent.id});
     }
 
     function goToInvite(){
-      $state.go("tab.events.extrainvite", {eventId: vm.currentEvent.id});
+      $state.go("tab.events.extrainvite", {eventId: EventsService.currentEvent.id});
     }
 
     function goToInvited(status){
-      $state.go("tab.events.invited", {eventId: vm.currentEvent.id, invitedStatus: status });
+      $state.go("tab.events.invited", {eventId: EventsService.currentEvent.id, invitedStatus: status });
     }
 
   }

@@ -41,8 +41,8 @@
       });
     }
 
-    function invitedPeopleCounter(event) {
-      $http.get('http://localhost:3000/api/events/' + event.id + '/invited_contacts_counter')
+    function invitedPeopleCounter() {
+      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invited_contacts_counter')
       .then(function(results) {
         console.log(results.data);
       });
@@ -55,7 +55,7 @@
     function get(eventId) {
       for (var i = 0; i < _model.results.length; i++) {
         if (_model.results[i].id === parseInt(eventId)) {
-          return _model.results[i];
+          _model.currentEvent = _model.results[i];
         }
       }
       return null;
