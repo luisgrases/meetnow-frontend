@@ -18,9 +18,9 @@
         </div>
         <div class="card">
             <div class="button-bar">
-                <a class="button" ng-click="vm.goToInvited('coming')">Assisting</a>
-                <a class="button" ng-click="vm.goToInvited('notComing')">Can't assist</a>
-                <a class="button" ng-click="vm.goToInvited('pending')">Third</a>
+                <a class="button" ng-click="vm.goToInvited('coming')">Assisting {{vm.EventsService.currentEvent.invited_people_counter.assisting}}</a>
+                <a class="button" ng-click="vm.goToInvited('notComing')">Can't assist {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
+                <a class="button" ng-click="vm.goToInvited('pending')">Pending {{vm.EventsService.currentEvent.invited_people_counter.pending}}</a>
             </div>
         </div>
         <div class="list card">
