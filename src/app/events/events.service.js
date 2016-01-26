@@ -14,7 +14,9 @@
       remove: remove,
       create: create,
       get: get,
+      invitedPeopleCounter : invitedPeopleCounter,
       results: null,
+      currentEvent: null,
       newEvent: {
         assist_limit: 0,
         users: []
@@ -39,6 +41,13 @@
       });
     }
 
+    function invitedPeopleCounter(event) {
+      $http.get('http://localhost:3000/api/events/' + event.id + '/invited_contacts_counter')
+      .then(function(results) {
+        console.log(results.data);
+      });
+    }
+
     function remove(event) {
       events.splice(events.indexOf(event), 1);
     }
@@ -52,5 +61,7 @@
       return null;
     }
   }
+
+
 
 })();

@@ -15,6 +15,7 @@
     vm.goToInvite = goToInvite;
     vm.goToInvited = goToInvited;
     ////////////////
+    EventsService.invitedPeopleCounter(vm.currentEvent);
 
     function goToEdit(){
       $state.go("tab.events.edit", {eventId: vm.currentEvent.id});
