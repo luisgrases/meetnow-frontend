@@ -9,9 +9,23 @@
   /* @ngInject */
   function EventsDetailInvitedController(EventsService, $stateParams, ContactsService) {
     var vm = this;
-    vm.currentEvent = EventsService.get($stateParams.eventId);
     vm.invitedStatus = $stateParams.invitedStatus;
+    vm.EventsService = EventsService;
     ////////////////
+    loadData();
+
+  function loadData(){
+    switch(vm.invitedStatus) {
+      case 'assisting':
+        EventsService.assistingPeople();
+          break;
+      case 'not_assisting':
+        EventsService.notAssistingPeople();
+          break;
+      default:
+        EventsService.pendingPeople();
+      }
+    }  
   }
 
 })();
