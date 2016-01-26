@@ -14,7 +14,6 @@
       remove: remove,
       create: create,
       get: get,
-      invitedPeopleCounter : invitedPeopleCounter,
       results: null,
       currentEvent: null,
       newEvent: {
@@ -44,7 +43,7 @@
     function invitedPeopleCounter() {
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invited_contacts_counter')
       .then(function(results) {
-        console.log(results.data);
+        _model.currentEvent.invited_people_counter = results.data;
       });
     }
 
@@ -56,6 +55,7 @@
       for (var i = 0; i < _model.results.length; i++) {
         if (_model.results[i].id === parseInt(eventId)) {
           _model.currentEvent = _model.results[i];
+          invitedPeopleCounter();
         }
       }
       return null;
