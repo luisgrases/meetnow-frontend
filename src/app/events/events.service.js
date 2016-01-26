@@ -20,9 +20,9 @@
       results: null,
       currentEvent: {
         invited_people: {
-          assisting: null,
-          not_assisting: null,
-          pending: null
+          assisting: [],
+          not_assisting: [],
+          pending: []
         }
       },
       newEvent: {
@@ -59,21 +59,23 @@
     function assistingPeople(){
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assisting_people')
       .then(function(results) {
-        _model.currentEvent.invited_people.assisting = results.data;
+        console.log(_model.currentEvent);
+        _model.currentEvent.invited_people = results.data;
       });
     }
 
     function notAssistingPeople(){
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assisting_people')
       .then(function(results) {
-        _model.currentEvent.invited_people.not_assisting = results.data;
+        _model.currentEvent.invited_people =  results.data;
       });
     }
 
     function pendingPeople(){
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/pending_people')
       .then(function(results) {
-        _model.currentEvent.invited_people.pending = results.data;
+        console.log(results);
+        _model.currentEvent.invited_people = results.data;
       });
     }
 

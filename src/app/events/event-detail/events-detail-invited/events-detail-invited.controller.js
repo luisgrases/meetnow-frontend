@@ -19,7 +19,7 @@
       case 'assisting':
         EventsService.assistingPeople();
           break;
-      case 'not_assisting':
+      case 'notAssisting':
         EventsService.notAssistingPeople();
           break;
       default:
