@@ -14,8 +14,17 @@
       remove: remove,
       create: create,
       get: get,
+      assistingPeople: assistingPeople,
+      notAssistingPeople: notAssistingPeople,
+      pendingPeople: pendingPeople,
       results: null,
-      currentEvent: null,
+      currentEvent: {
+        invited_people: {
+          assisting: null,
+          not_assisting: null,
+          pending: null
+        }
+      },
       newEvent: {
         assist_limit: 0,
         users: []
@@ -47,6 +56,27 @@
       });
     }
 
+    function assistingPeople(){
+      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assisting_people')
+      .then(function(results) {
+        _model.currentEvent.invited_people.assisting = results.data;
+      });
+    }
+
+    function notAssistingPeople(){
+      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assisting_people')
+      .then(function(results) {
+        _model.currentEvent.invited_people.not_assisting = results.data;
+      });
+    }
+
+    function pendingPeople(){
+      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/pending_people')
+      .then(function(results) {
+        _model.currentEvent.invited_people.pending = results.data;
+      });
+    }
+
     function remove(event) {
       events.splice(events.indexOf(event), 1);
     }
@@ -61,7 +91,5 @@
       return null;
     }
   }
-
-
 
 })();
