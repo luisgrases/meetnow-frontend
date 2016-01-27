@@ -14,6 +14,7 @@
     ////////////////
     loadData();
 
+
   function loadData(){
     switch(vm.invitedStatus) {
       case 'assisting':

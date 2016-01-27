@@ -17,6 +17,7 @@
       assistingPeople: assistingPeople,
       notAssistingPeople: notAssistingPeople,
       pendingPeople: pendingPeople,
+      changeMemberPrivilege: changeMemberPrivilege,
       results: null,
       currentEvent: {
         invited_people: {
@@ -92,6 +93,14 @@
       }
       return null;
     }
+
+    function changeMemberPrivilege(user) {
+      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/change_member_privilege', {user_id : user.id})
+      .then(function(results) {
+        console.log(results);
+      });
+    }
+
   }
 
 })();
