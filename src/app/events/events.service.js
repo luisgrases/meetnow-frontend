@@ -17,6 +17,8 @@
       assistingPeople: assistingPeople,
       notAssistingPeople: notAssistingPeople,
       pendingPeople: pendingPeople,
+      assist: assist,
+      notAssist: notAssist,
       changeMemberPrivilege: changeMemberPrivilege,
       results: null,
       currentEvent: {
@@ -92,6 +94,20 @@
         }
       }
       return null;
+    }
+
+    function assist() {
+      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assist')
+      .then(function(results) {
+        console.log(results);
+      });
+    }
+
+    function notAssist() {
+      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assist')
+      .then(function(results) {
+        console.log(results);
+      });
     }
 
     function changeMemberPrivilege(user) {

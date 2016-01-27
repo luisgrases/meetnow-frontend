@@ -34,8 +34,8 @@
     </ion-content>
     <ion-footer-bar align-title="center">
         <div class="button-bar">
-            <a class="button">Assist</a>
-            <a class="button">Can't assist</a>
+            <a class="button" ng-click="vm.EventsService.assist()">Assist</a>
+            <a class="button" ng-click="vm.EventsService.notAssist()">Can't assist</a>
         </div>
     </ion-footer-bar>
 </ion-view>
