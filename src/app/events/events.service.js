@@ -14,20 +14,11 @@
       remove: remove,
       create: create,
       get: get,
-      assistingPeople: assistingPeople,
-      notAssistingPeople: notAssistingPeople,
-      pendingPeople: pendingPeople,
       assist: assist,
       notAssist: notAssist,
       changeMemberPrivilege: changeMemberPrivilege,
       results: null,
-      currentEvent: {
-        invited_people: {
-          assisting: [],
-          not_assisting: [],
-          pending: []
-        }
-      },
+      currentEvent: null,
       newEvent: {
         assist_limit: 0,
         users: []
@@ -52,33 +43,12 @@
       });
     }
 
-    function invitedPeopleCounter() {
-      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invited_contacts_counter')
+    function details() {
+      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
       .then(function(results) {
-        _model.currentEvent.invited_people_counter = results.data;
-      });
-    }
-
-    function assistingPeople(){
-      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assisting_people')
-      .then(function(results) {
-        console.log(_model.currentEvent);
-        _model.currentEvent.invited_people = results.data;
-      });
-    }
-
-    function notAssistingPeople(){
-      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assisting_people')
-      .then(function(results) {
-        _model.currentEvent.invited_people =  results.data;
-      });
-    }
-
-    function pendingPeople(){
-      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id + '/pending_people')
-      .then(function(results) {
-        console.log(results);
-        _model.currentEvent.invited_people = results.data;
+        _model.currentEvent.invited_people_counter = results.data['invited_people_counter'];
+        _model.currentEvent.admin = results.data['admin']['uid' ];
+        _model.currentEvent.invited_people = results.data['invited_people'];
       });
     }
 
@@ -90,7 +60,7 @@
       for (var i = 0; i < _model.results.length; i++) {
         if (_model.results[i].id === parseInt(eventId)) {
           _model.currentEvent = _model.results[i];
-          invitedPeopleCounter();
+          details();
         }
       }
       return null;

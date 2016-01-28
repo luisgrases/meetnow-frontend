@@ -12,21 +12,6 @@
     vm.invitedStatus = $stateParams.invitedStatus;
     vm.EventsService = EventsService;
     ////////////////
-    loadData();
-
-
-  function loadData(){
-    switch(vm.invitedStatus) {
-      case 'assisting':
-        EventsService.assistingPeople();
-          break;
-      case 'notAssisting':
-        EventsService.notAssistingPeople();
-          break;
-      default:
-        EventsService.pendingPeople();
-      }
-    }  
   }
 
 })();
