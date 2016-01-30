@@ -3,7 +3,7 @@
     <ion-list>
       <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.acceptedResults" type="item-text-wrap" >
         <h2>{{contact.uid}}</h2>
-        <button class="button button-clear button-positive" ng-class="{'button-energized': contact.invited}">
+        <button class="button button-clear button-positive" ng-hide="contact.invited" ng-click="vm.EventsService.inviteContact(contact)">
            Invite
         </button>
 

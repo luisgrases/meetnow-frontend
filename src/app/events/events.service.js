@@ -17,6 +17,7 @@
       assist: assist,
       notAssist: notAssist,
       changeMemberPrivilege: changeMemberPrivilege,
+      inviteContact: inviteContact,
       results: null,
       currentEvent: null,
       newEvent: {
@@ -83,6 +84,13 @@
 
     function changeMemberPrivilege(user) {
       $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/change_member_privilege', {user_id : user.id})
+      .then(function(results) {
+        console.log(results);
+      });
+    }
+
+    function inviteContact(contact) {
+      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invite_contact', {user_id : contact.id})
       .then(function(results) {
         console.log(results);
       });
