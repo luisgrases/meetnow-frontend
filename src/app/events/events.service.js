@@ -13,6 +13,7 @@
       all: all,
       remove: remove,
       create: create,
+      update: update,
       get: get,
       assist: assist,
       notAssist: notAssist,
@@ -43,6 +44,13 @@
         console.log(results);
       });
     }
+
+    function update(event) {
+      $http.patch('http://localhost:3000/api/events/' + _model.currentEvent.id, event)
+      .then(function(results) {
+        console.log(results);
+      });
+    }      
 
     function details() {
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
