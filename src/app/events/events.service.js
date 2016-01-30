@@ -47,8 +47,9 @@
       $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
       .then(function(results) {
         _model.currentEvent.invited_people_counter = results.data['invited_people_counter'];
-        _model.currentEvent.admin = results.data['admin']['uid' ];
+        _model.currentEvent.admin = results.data['admin']['uid'];
         _model.currentEvent.invited_people = results.data['invited_people'];
+        console.log(_model.currentEvent.invited_people);
       });
     }
 

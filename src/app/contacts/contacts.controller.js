@@ -14,7 +14,6 @@
     vm.ContactsService = ContactsService;
     vm.requestRecievedActionSheet = requestRecievedActionSheet;
     vm.removeContact = removeContact;
-    ContactsService.reloadContacts();
 
     ////////////////
 

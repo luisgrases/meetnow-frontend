@@ -5,10 +5,10 @@
     .module('app.events')
     .controller('EventsController', EventsController);
 
-  EventsController.$inject = ['EventsService', '$state'];
+  EventsController.$inject = ['EventsService', '$state', 'ContactsService'];
 
   /* @ngInject */
-  function EventsController(EventsService, $state) {
+  function EventsController(EventsService, $state, ContactsService) {
     var vm = this;
     vm.remove = remove;
     vm.transition = transition;
@@ -16,6 +16,7 @@
     vm.EventsService = EventsService;
 
     vm.EventsService.all();
+    ContactsService.reloadContacts();
 
     ////////////////
 
