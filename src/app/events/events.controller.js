@@ -20,6 +20,14 @@
 
     ////////////////
 
+    var client = new Faye.Client('http://localhost:9292/faye');
+
+    client.subscribe("/events", function(data) {
+      EventsService.results.push(data.event);
+      
+    });
+
+
     function transition(){
       $state.go("tab.events.create");
     };

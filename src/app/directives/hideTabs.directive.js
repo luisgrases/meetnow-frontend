@@ -7,7 +7,7 @@ module.directive('hideTabs', function($rootScope) {
                 $rootScope.hideTabs = value;
             });
 
-            scope.$on('$destroy', function() {
+            scope.$on('$ionicView.beforeLeave', function() {
                 $rootScope.hideTabs = false;
             });
         }
