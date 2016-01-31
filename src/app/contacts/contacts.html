@@ -9,9 +9,9 @@
             Requests Recieved
         </div>
         <ion-list>
-            <ion-item class="item-remove-animate item-button-right" ng-repeat="requestRecieved in vm.ContactsService.requestsRecievedResults" type="item-text-wrap">
-                <h2>{{requestRecieved.uid}}</h2>
-                <button class="button button-posistive" ng-click="vm.requestRecievedActionSheet(requestRecieved)">
+            <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.all" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'inverse'}}">
+                <h2>{{contact.uid}}</h2>
+                <button class="button button-posistive" ng-click="vm.requestRecievedActionSheet(contact)">
                   <i class="icon ion-ios-telephone"></i>
                 </button>
             </ion-item>
@@ -20,8 +20,8 @@
             Requests Sent
         </div>
         <ion-list>
-            <ion-item class="item-remove-animate" ng-repeat="requestSent in vm.ContactsService.requestsSentResults" type="item-text-wrap">
-                <h2>{{requestSent.uid}}</h2>
+            <ion-item class="item-remove-animate" ng-repeat="contact in vm.ContactsService.all" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'normal'}}">
+                <h2>{{contact.uid}}</h2>
                 <ion-option-button class="button-assertive" ng-click="vm.removeContact(requestSent)">
                     Cancel
                 </ion-option-button>
@@ -31,7 +31,7 @@
             Contacts
         </div>
         <ion-list>
-            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.acceptedResults" type="item-text-wrap">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all" type="item-text-wrap" ng-show="contact.accepted">
                 <h2>{{contact.uid}}</h2>
                 <ion-option-button class="button-assertive" ng-click="vm.removeContact(contact)">
                     Delete

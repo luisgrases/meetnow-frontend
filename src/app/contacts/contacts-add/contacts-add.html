@@ -21,7 +21,7 @@
             Requests Recieved
         </div>
         <ion-list ng-hide="vm.searchTerm == ''">
-            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.requestsRecievedResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all | filter:{uid: vm.searchTerm}" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'inverse'}}">
                 <h2>{{contact.uid}}</h2>
                 <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
                     Delete
@@ -32,7 +32,7 @@
             Requests Sent
         </div>
         <ion-list ng-hide="vm.searchTerm == ''">
-            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.requestsSentResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all | filter:{uid: vm.searchTerm}" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'normal'}}">
                 <h2>{{contact.uid}}</h2>
                 <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
                     Delete
@@ -43,7 +43,7 @@
             Contacts
         </div>
         <ion-list ng-hide="vm.searchTerm == ''">
-            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.acceptedResults | filter:{uid: vm.searchTerm}" type="item-text-wrap">
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all | filter:{uid: vm.searchTerm}" type="item-text-wrap" ng-show="contact.accepted">
                 <h2>{{contact.uid}}</h2>
                 <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
                     Delete

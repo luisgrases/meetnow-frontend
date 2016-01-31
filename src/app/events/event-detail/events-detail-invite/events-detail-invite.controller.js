@@ -18,7 +18,7 @@
 
     
     function addInvitedAttribute(){
-      var contacts = ContactsService.acceptedResults;
+      var contacts = ContactsService.all;
       for (var i = 0; i < contacts.length; i++) {
          (isInvited(contacts[i])) ? contacts[i].invited = true : contacts[i].invited = false; 
       }

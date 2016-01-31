@@ -32,7 +32,7 @@
         EventsService.newEvent.users.splice(index, 1);
       }
       contact.hide = false;
-      console.log(ContactsService.acceptedResults);
+      console.log(ContactsService.all);
     }
 
 

@@ -15,7 +15,6 @@
       addContact: addContact,
       search: search,
       reloadContacts: reloadContacts,
-      acceptedResults: null,
       requestsSentResults: null,
       requestsRecievedResults: null,
       searchResults: null
@@ -25,32 +24,14 @@
     ////////////////
 
     function reloadContacts(){
-      accepted();
-      requestsSent();
-      requestsRecieved();
+      all();
     }
 
-    function accepted() {
-      $http.get('http://localhost:3000/api/friendships/accepted')
+    function all() {
+      $http.get('http://localhost:3000/api/friendships/all')
       .then(function(results) {
         console.log(results.data);
-        _model.acceptedResults = results.data;
-      });
-    };
-
-    function requestsSent() {
-      $http.get('http://localhost:3000/api/friendships/requests_sent')
-      .then(function(results) {
-        console.log(results.data);
-        _model.requestsSentResults = results.data;
-      });
-    };
-
-    function requestsRecieved() {
-      $http.get('http://localhost:3000/api/friendships/requests_recieved')
-      .then(function(results) {
-        console.log(results.data);
-        _model.requestsRecievedResults = results.data;
+        _model.all = results.data;
       });
     };
 
@@ -71,6 +52,7 @@
 
     function remove() {}
     function accept(contact) {
+      console.log(contact)
       $http.post('http://localhost:3000/api/friendships/accept', contact)
       .then(function(results) {
         console.log(results);
