@@ -1,3 +1,4 @@
+
 (function() {
   'use strict';
 
@@ -22,9 +23,13 @@
 
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    client.subscribe("/events", function(data) {
+    client.subscribe("/current_user/events", function(data) {
       EventsService.results.push(data.event);
       
+    });
+
+    client.subscribe("current_user/friendship/accepted", function(data) {
+      ContactsService.all.push(data.contacts);
     });
 
 
