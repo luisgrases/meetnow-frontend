@@ -5,14 +5,28 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-        <ion-list>
+
+
+
+
+        <div class="list card">
             <ion-item class="item-remove-animate item-icon-right" ng-repeat="event in vm.EventsService.results" type="item-text-wrap" ng-click="vm.goToDetailed(event)">
+
+            <div class="row">
+              <div class="col col-10 item-icon-left">
+                  <i class="icon ion-unlocked"></i>
+              </div>
+
+              <div class="col col-ID">
                 <h2>{{event.title}}</h2>
-                <i class="icon ion-chevron-right icon-accessory"></i>
+                <p>Last Update: {{event.updated_at}}</p>
+              </div>
+              <div class="col carsTable__col--action"><a ng-click="ctrl.showEditCarForm(car)" class=" icon-accessory icon ion-chevron-right"></a></div>
+            </div>
                 <ion-option-button class="button-assertive" ng-click="vm.remove(  event)">
                     Delete
                 </ion-option-button>
             </ion-item>
-        </ion-list>
+        </div>
     </ion-content>
 </ion-view>
