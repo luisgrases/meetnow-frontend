@@ -20,7 +20,8 @@
     ContactsService.reloadContacts();
 
     ////////////////
-    console.log('cargo el event controller');
+    var d = new Date();
+    console.log(d);
     var client = new Faye.Client('http://localhost:9292/faye');
 
     client.subscribe("/current_user/events", function(data) {

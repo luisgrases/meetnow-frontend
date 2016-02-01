@@ -19,7 +19,7 @@
 
               <div class="col col-ID">
                 <h2>{{event.title}}</h2>
-                <p>Last Update: {{event.updated_at}}</p>
+                <p>Last Update: <span am-time-ago="event.updated_at"></span></p>
               </div>
               <div class="col carsTable__col--action"><a ng-click="ctrl.showEditCarForm(car)" class=" icon-accessory icon ion-chevron-right"></a></div>
             </div>

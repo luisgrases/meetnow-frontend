@@ -8,7 +8,7 @@
       'ng-token-auth',
       'app.core',
       'app.directives',
-
+      'angularMoment',
       /* Feature areas */
       'app.account',
       'app.registration',

@@ -34,7 +34,7 @@
                 <i class="icon ion-key"></i> {{vm.EventsService.currentEvent.admin}}
             </ion-item>
             <ion-item>
-                Updated </i> {{vm.EventsService.currentEvent.updated_at}}
+                Last Update </i> <span am-time-ago="vm.EventsService.currentEvent.updated_at"></span>
             </ion-item>
         </div>
     </ion-content>
