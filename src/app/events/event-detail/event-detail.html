@@ -1,26 +1,29 @@
 <ion-view hide-tabs='true' view-title="Meet Details">
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="vm.goToInvite()">
-            Invite
+        <button class="button button-small button-clear" ng-click="vm.goToInvite()">
+        <i class="icon ion-person-add"></i>
         </button>
-        <button class="button" ng-click="vm.goToEdit()">
-            Edit
+        <button class="button button-small button-clear" ng-click="vm.goToEdit()">
+             <i class="icon ion-edit"></i>
         </button>
     </ion-nav-buttons>
     <ion-content>
         <div class="list card">
-            <ion-item class="item-icon-left">
-                <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.title}}
+            <ion-item class="item">
+                {{vm.EventsService.currentEvent.title}}
             </ion-item>
             <div class="item item-text-wrap">
                 {{vm.EventsService.currentEvent.description}}
             </div>
         </div>
-        <div class="card">
+        <div class="card card-assertive">
             <div class="button-bar">
-                <a class="button" ng-click="vm.goToInvited('assisting')">Assisting {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit}}</a>
-                <a class="button" ng-click="vm.goToInvited('not_assisting')">Can't assist {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
-                <a class="button" ng-click="vm.goToInvited('pending')">Pending {{vm.EventsService.currentEvent.invited_people_counter.pending}}</a>
+                <a class="button button-clear" ng-click="vm.goToInvited('assisting')">
+                <i class="icon ion-checkmark-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit}}</a>
+                <a class="button button-clear" ng-click="vm.goToInvited('not_assisting')">
+                <i class="icon ion-close-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
+                <a class="button button-clear" ng-click="vm.goToInvited('pending')">
+                <i class="icon ion-help"></i> {{vm.EventsService.currentEvent.invited_people_counter.pending}}</a>
             </div>
         </div>
         <div class="list card">
@@ -28,14 +31,17 @@
                 <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.status}}
             </ion-item>
             <ion-item class="item-icon-left">
-                <i class="icon ion-email"></i> {{vm.EventsService.currentEvent.admin}}
+                <i class="icon ion-key"></i> {{vm.EventsService.currentEvent.admin}}
+            </ion-item>
+            <ion-item>
+                Updated </i> {{vm.EventsService.currentEvent.updated_at}}
             </ion-item>
         </div>
     </ion-content>
     <ion-footer-bar align-title="center">
         <div class="button-bar">
-            <a class="button" ng-click="vm.EventsService.assist()">Assist</a>
-            <a class="button" ng-click="vm.EventsService.notAssist()">Can't assist</a>
+            <a class="button button-clear" ng-click="vm.EventsService.assist()">Assist</a>
+            <a class="button button-clear button-assertive" ng-click="vm.EventsService.notAssist()">Can't assist</a>
         </div>
     </ion-footer-bar>
 </ion-view>

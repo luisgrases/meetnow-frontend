@@ -53,7 +53,7 @@
     }      
 
     function details() {
-      $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
+      return $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
       .then(function(results) {
         _model.currentEvent.invited_people_counter = results.data['invited_people_counter'];
         _model.currentEvent.admin = results.data['admin']['uid'];
@@ -70,7 +70,7 @@
       for (var i = 0; i < _model.results.length; i++) {
         if (_model.results[i].id === parseInt(eventId)) {
           _model.currentEvent = _model.results[i];
-          details();
+          return details();
         }
       }
       return null;

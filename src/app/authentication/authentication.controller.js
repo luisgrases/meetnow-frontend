@@ -17,11 +17,11 @@
 
       function signInUser() {
         console.log(Session.activeSession());
-      $auth.submitLogin(vm.loginForm)
-        .then(function(response) {
-         Session.create(response.id);
-         $state.go("tab.events.index");
-        })
+        $auth.submitLogin(vm.loginForm)
+          .then(function(response) {
+            Session.create(response.id);
+            $state.go("tab.events.index");
+          })
         .catch(function(response) {
           console.log("Login Problem")
         });

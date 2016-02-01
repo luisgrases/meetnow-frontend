@@ -8,5 +8,9 @@
   "dependencies": {
     "angular-messages": "~1.4.3",
     "ng-token-auth": "~0.0.28"
+  },
+  "resolutions": {
+    "angular-sanitize": "1.4.3",
+    "angular": "1.4.8"
   }
 }

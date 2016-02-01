@@ -14,22 +14,27 @@
     // Each state's controller can be found in controllers.js
     $stateProvider
 
+
     // setup an abstract state for the tabs directive
     .state('tab', {
       url: '/tab',
       abstract: true,
       templateUrl: 'app/layout/tabs.html',
       resolve: {
-        auth: function($auth) {
-          return $auth.validateUser();
+        auth: function ($auth, $location) {
+          return $auth.validateUser().catch(function(err){
+            console.info('not authenticated', err);
+            $location.path('/sign_in');
+          });
         }
       }
-    });
+    })
+
 
     // Each tab has its own nav history stack which is defined in the corresponding module.
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/sign_in');
+    $urlRouterProvider.otherwise('/tab/events');
   }
 
 })();
