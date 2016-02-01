@@ -1,4 +1,4 @@
-<ion-view hide-tabs='true' view-title="Meet Details">
+<ion-view class="cool-gray-background" hide-tabs='true' view-title="Meet Details">
     <ion-nav-buttons side="right">
         <button class="button button-small button-clear" ng-click="vm.goToInvite()">
         <i class="icon ion-person-add"></i>
@@ -8,10 +8,13 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
+    <div class="item item-divider">
+             {{vm.EventsService.currentEvent.title}}
+        </div>
         <div class="list card">
-            <ion-item class="item">
-                {{vm.EventsService.currentEvent.title}}
-            </ion-item>
+
+
+               
             <div class="item item-text-wrap">
                 {{vm.EventsService.currentEvent.description}}
             </div>
@@ -19,9 +22,9 @@
         <div class="card card-assertive">
             <div class="button-bar">
                 <a class="button button-clear" ng-click="vm.goToInvited('assisting')">
-                <i class="icon ion-checkmark-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit}}</a>
+                <i class="icon balanced ion-checkmark-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit}}</a>
                 <a class="button button-clear" ng-click="vm.goToInvited('not_assisting')">
-                <i class="icon ion-close-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
+                <i class="icon assertive ion-close-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
                 <a class="button button-clear" ng-click="vm.goToInvited('pending')">
                 <i class="icon ion-help"></i> {{vm.EventsService.currentEvent.invited_people_counter.pending}}</a>
             </div>
