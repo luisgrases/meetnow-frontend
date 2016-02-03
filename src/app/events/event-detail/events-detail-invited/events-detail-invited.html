@@ -1,10 +1,9 @@
-<ion-view class="cool-gray-background" hide-tabs='true' view-title="{{vm.invitedStatus}}">
+<ion-view class="cool-gray-background" hide-tabs='true' view-title="">
   <ion-content>
     <ion-list>
      <ion-item class="item-remove-animate item-button-right" ng-repeat="invitedUser in vm.EventsService.currentEvent.invited_people" ng-show="invitedUser.status == vm.invitedStatus" type="item-text-wrap">
           <h2>{{invitedUser.uid}}</h2>
-          <button class="button"  ng-class="{'button-energized': invitedUser.privilege == 'admin','button-light': invitedUser.privilege == 'subadmin' }" ng-click="vm.EventsService.changeMemberPrivilege(invitedUser)">
-            <i class="icon ion-ios-telephone"></i>
+          <button class="button button-clear icon ion-key"  ng-class="{'button-energized': invitedUser.privilege == 'admin','button-calm': invitedUser.privilege == 'subadmin' }" ng-click="vm.EventsService.changeMemberPrivilege(invitedUser)">
           </button>
       </ion-item>
     </ion-list>

@@ -1,7 +1,6 @@
 <ion-view class="cool-gray-background" view-title="Contacts">
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="vm.goToAddContacts()">
-            Add contact
+        <button class="button button-clear white-text icon ion-ios-search-strong" ng-click="vm.goToAddContacts()">
         </button>
     </ion-nav-buttons>
     <ion-content>
@@ -11,8 +10,8 @@
         <ion-list>
             <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.all" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'inverse'}}">
                 <h2>{{contact.uid}}</h2>
-                <button class="button button-posistive" ng-click="vm.requestRecievedActionSheet(contact)">
-                  <i class="icon ion-ios-telephone"></i>
+                <button class="button button-positive button-clear" ng-click="vm.requestRecievedActionSheet(contact)">
+                  Action
                 </button>
             </ion-item>
         </ion-list>

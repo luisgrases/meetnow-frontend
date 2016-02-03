@@ -6,8 +6,7 @@
           </div>
           <ion-item class="item-button-right" ng-repeat="contact in vm.EventsService.newEvent.users">
               {{contact.uid}}
-               <button class="button button-posistive" ng-click="vm.uninviteContact(contact)">
-              <i class="icon ion-ios-telephone"></i>
+               <button class="button button-assertive button-clear icon ion-ios-minus-outline" ng-click="vm.uninviteContact(contact)">
             </button>
           </ion-item>
           <div class="item item-divider">
@@ -15,8 +14,7 @@
           </div>
           <ion-item class="item-button-right" ng-repeat="contact in vm.ContactsService.all" ng-hide="contact.hide">    
             {{contact.uid}}
-            <button class="button button-posistive" ng-click="vm.inviteContact(contact)">
-              <i class="icon ion-ios-telephone"></i>
+            <button class="button button-assertive button-clear icon ion-ios-plus-outline" ng-click="vm.inviteContact(contact)">
             </button>
           </ion-item>
         </ion-list>

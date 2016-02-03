@@ -11,7 +11,6 @@
     var vm = this;
     vm.ContactsService = ContactsService;
     vm.EventsService = EventsService;
-    ContactsService.reloadContacts();
     vm.inviteContact = inviteContact;
     vm.uninviteContact = uninviteContact;
     activate();

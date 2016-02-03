@@ -12,8 +12,7 @@
         <ion-list>
         <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.searchResults" type="item-text-wrap">
                 <h2>{{contact.uid}}</h2>
-                <button class="button button-positive" ng-click="vm.addContact(contact)">
-                  <i class="icon ion-ios-telephone"></i>
+                <button class="button button-clear button-balanced icon ion-person-add" ng-click="vm.addContact(contact)">
                 </button>
             </ion-item>
         </ion-list>
@@ -23,9 +22,6 @@
         <ion-list ng-hide="vm.searchTerm == ''">
             <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all | filter:{uid: vm.searchTerm}" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'inverse'}}">
                 <h2>{{contact.uid}}</h2>
-                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
-                    Delete
-                </ion-option-button>
             </ion-item>
         </ion-list>
         <div class="item item-divider">
@@ -34,9 +30,6 @@
         <ion-list ng-hide="vm.searchTerm == ''">
             <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in vm.ContactsService.all | filter:{uid: vm.searchTerm}" type="item-text-wrap" ng-show="{{!contact.accepted && contact.type == 'normal'}}">
                 <h2>{{contact.uid}}</h2>
-                <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
-                    Delete
-                </ion-option-button>
             </ion-item>
         </ion-list>
         <div class="item item-divider">
