@@ -18,7 +18,6 @@
     EventsService.get($stateParams.eventId).then(function(){
       console.log(Session.id);
       console.log(EventsService.currentEvent);
-      imAssisting();
 
 
     });
@@ -33,19 +32,6 @@
 
     function goToInvited(status){
       $state.go("tab.events.invited", {eventId: EventsService.currentEvent.id, invitedStatus: status });
-    }
-
-    function imAssisting(){
-      console.log(me().status == 'assisting');
-    }
-
-    function me() {
-      for (var i = 0; i < EventsService.currentEvent.invited_people.length; i++) {
-        if (EventsService.currentEvent.invited_people[i].id === parseInt(Session.id)) {
-          return EventsService.currentEvent.invited_people[i];
-        }
-      }
-      return null;
     }
 
   }
