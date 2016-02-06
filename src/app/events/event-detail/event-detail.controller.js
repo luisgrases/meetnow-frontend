@@ -14,9 +14,9 @@
     vm.goToInvite = goToInvite;
     vm.goToInvited = goToInvited;
     vm.EventsService = EventsService;
+    vm.goToDescription = goToDescription;
     ////////////////
     EventsService.get($stateParams.eventId).then(function(){
-      console.log(Session.id);
       console.log(EventsService.currentEvent);
 
 
@@ -28,6 +28,10 @@
 
     function goToInvite(){
       $state.go("tab.events.extrainvite", {eventId: EventsService.currentEvent.id});
+    }
+
+    function goToDescription(){
+      $state.go("tab.events.description", {eventId: EventsService.currentEvent.id});
     }
 
     function goToInvited(status){

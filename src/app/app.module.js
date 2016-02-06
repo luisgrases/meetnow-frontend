@@ -9,6 +9,7 @@
       'app.core',
       'app.directives',
       'angularMoment',
+      'filters',
       /* Feature areas */
       'app.account',
       'app.registration',

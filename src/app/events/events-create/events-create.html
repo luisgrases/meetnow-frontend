@@ -10,10 +10,10 @@
                 Create Meet
             </div>
             <label class="item item-input">
-                <input ng-model="vm.EventsService.newEvent.title" type="text" placeholder="Title">
+                <input ng-model="vm.EventsService.newEvent.title" type="text" placeholder="Title" maxlength="50">
             </label>
-            <label class="item item-input">
-                <textarea ng-model="vm.EventsService.newEvent.description" placeholder="Description"></textarea>
+            <label class="item item-input item-text-wrap">
+                <textarea ng-model="vm.EventsService.newEvent.description" placeholder="Description" maxlength="1500" rows="10"></textarea>
             </label>
             <div class="item item-divider"></div>
             <ion-item class="item-icon-right" ng-click="vm.goToInvitePeopleView()">
@@ -25,8 +25,8 @@
             </ion-item>
             <ion-item class="item-button-right">
                 Assist Limit 
-                <div class="centeredData">
-                {{vm.EventsService.newEvent.assist_limit}}
+                <div class="centeredData" >
+                <span infinite>{{vm.EventsService.newEvent.assist_limit | assistLimit}}</span>
                 </div>
                 <div class="buttons">
                     <button class="button button-energized" ng-click="vm.decreaseAssistLimit()">

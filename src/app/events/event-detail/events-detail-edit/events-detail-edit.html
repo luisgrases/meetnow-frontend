@@ -10,17 +10,17 @@
                 Edit Meet
             </div>
             <label class="item item-input">
-                <input ng-model="vm.editingEvent.title" type="text" placeholder="Title">
+                <input ng-model="vm.editingEvent.title" type="text" placeholder="Title" maxlength="50">
             </label>
             <label class="item item-input">
-                <textarea ng-model="vm.editingEvent.description" placeholder="Description">
+                <textarea ng-model="vm.editingEvent.description" placeholder="Description" maxlength="1500" rows="10">
                 </textarea>
             </label>
             <div class="item item-divider"></div>
             <ion-item class="item-button-right">
                 Assist Limit 
                 <div class="centeredData">
-                {{vm.editingEvent.assist_limit}}
+                {{vm.editingEvent.assist_limit | assistLimit}}
                 </div>
                 <div class="buttons">
                     <button class="button button-energized" ng-click="vm.decreaseAssistLimit()">

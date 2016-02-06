@@ -12,13 +12,15 @@
 
                
             <div class="item item-text-wrap">
-                {{vm.EventsService.currentEvent.description}}
+                {{vm.EventsService.currentEvent.description | limitTo : 200 }}<span ng-if="vm.EventsService.currentEvent.description.length > 200">...</span>
             </div>
+             
         </div>
+        <button class="button button-full" ng-click="vm.goToDescription()">Show full description</button>
         <div class="card card-assertive">
             <div class="button-bar">
                 <a class="button button-clear" ng-click="vm.goToInvited('assisting')">
-                <i class="icon balanced ion-checkmark-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit}}</a>
+                <i class="icon balanced ion-checkmark-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.assisting}}/{{vm.EventsService.currentEvent.assist_limit | assistLimit}}</a>
                 <a class="button button-clear" ng-click="vm.goToInvited('not_assisting')">
                 <i class="icon assertive ion-close-round"></i> {{vm.EventsService.currentEvent.invited_people_counter.not_assisting}}</a>
                 <a class="button button-clear" ng-click="vm.goToInvited('pending')">
