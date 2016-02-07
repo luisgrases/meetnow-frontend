@@ -10,6 +10,7 @@
       'app.directives',
       'angularMoment',
       'filters',
+      'vcRecaptcha',
       /* Feature areas */
       'app.account',
       'app.registration',

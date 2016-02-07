@@ -2,15 +2,24 @@
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <input type="email" name="email" ng-model="vm.registrationForm.email" placeholder="Email">
+                <input type="name" ng-model="vm.registrationForm.name" placeholder="Name">
             </label>
+            <label class="item item-input">
+                <input ng-model="vm.registrationForm.username" placeholder="Username">
+            </label>
+            <label class="item item-input">
+                <input type="email" ng-model="vm.registrationForm.email" placeholder="Email">
+            </label>
+            
             <label class="item item-input">
                 <input ng-model="vm.registrationForm.password" type="password" name="password" placeholder="Password">
             </label>
             <label class="item item-input">
                 <input type="password" name="password_confirmation" ng-model="vm.registrationForm.password_confirmation" placeholder="Password confirmation"></textarea>
             </label>
+            <div vc-recaptcha key="'6LfmqBcTAAAAAM09TQ2Xy_40vI5fVpH7Hx8ULzpO'"></div>
         </div>
+
         <button class="button button-full button-positive" ng-click="vm.registerUser()">Register</button>
     </ion-content>
 </ion-view>

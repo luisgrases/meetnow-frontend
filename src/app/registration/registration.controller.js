@@ -5,10 +5,10 @@
   .module('app.registration')
   .controller('RegistrationController', RegistrationController);
 
-  RegistrationController.$inject = ['$auth'];
+  RegistrationController.$inject = ['$auth', 'vcRecaptchaService'];
 
   /* @ngInject */
-  function RegistrationController($auth) {
+  function RegistrationController($auth, vcRecaptchaService) {
     var vm = this;
     vm.registerUser = registerUser;
 
