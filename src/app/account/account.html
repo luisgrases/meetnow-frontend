@@ -1,10 +1,10 @@
 <ion-view class="cool-gray-background" view-title="Account">
 	<ion-content>
 		<ion-list>
-			<ion-toggle  ng-model="vm.settings.enableFriends">
-				Enable Friends
-			</ion-toggle>
-      <button class="button button-full button-assertive" ng-click="vm.signOutUser()">Sign Out</button>
+      <ion-item class="icon ion-person">
+        {{vm.Session.current_user.uid}}
+      </ion-item>
+      <button class="button button-full button-positive" ng-click="vm.signOutUser()">Sign Out</button>
 		</ion-list>
 	</ion-content>
 </ion-view>

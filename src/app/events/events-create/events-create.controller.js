@@ -17,7 +17,6 @@
     vm.increaseAssistLimit = increaseAssistLimit;
     vm.decreaseAssistLimit = decreaseAssistLimit;
     activate();
-    vm.hola = "hola";
     ////////////////
 
     function activate() {

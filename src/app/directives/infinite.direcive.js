@@ -1,4 +1,4 @@
-var module = angular.module('app.directives', []);
+var module = angular.module('app.directives');
 module.directive('infinite', function($rootScope) {
   return {
     restrict: 'E',

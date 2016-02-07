@@ -5,12 +5,13 @@
   .module('app.account')
   .controller('AccountController', AccountController);
 
-  AccountController.$inject = ['$auth', '$state'];
+  AccountController.$inject = ['$auth', '$state', 'Session'];
 
   /* @ngInject */
-  function AccountController($auth, $state) {
+  function AccountController($auth, $state, Session) {
     var vm = this;
     vm.signOutUser = signOutUser;
+    vm.Session = Session;
     vm.settings = {
       enableFriends: true
     };
