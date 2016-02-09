@@ -5,26 +5,27 @@
   .module('app.authentication')
   .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$auth','$rootScope', 'Session', '$state'];
+  AuthenticationController.$inject = ['$auth','$rootScope', 'Session', '$state', 'ErrorMessage'];
 
   /* @ngInject */
-  function AuthenticationController($auth, $rootScope, Session, $state) {
+  function AuthenticationController($auth, $rootScope, Session, $state, ErrorMessage) {
     var vm = this;
     vm.signInUser = signInUser;
+    vm.goToRegistration = goToRegistration;
 
-    $rootScope.$on('auth:login-success', function(ev, user) {
-    });
+    function goToRegistration(){
+       $state.go("registration");
+    }
 
-      function signInUser() {
-        console.log(Session.activeSession());
-        $auth.submitLogin(vm.loginForm)
-          .then(function(response) {
-            Session.create(response.id);
-            $state.go("tab.events.index");
-          })
-        .catch(function(response) {
-          console.log("Login Problem")
-        });
+    function signInUser() {
+      $auth.submitLogin(vm.loginForm)
+        .then(function(response) {
+          Session.create(response.id);
+          $state.go("tab.events.index");
+        })
+      .catch(function(response) {
+        ErrorMessage.showAlert(response.errors);
+      });
     };
   }
 })();

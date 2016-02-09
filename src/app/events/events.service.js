@@ -42,6 +42,8 @@
       $http.post('http://localhost:3000/api/events', event)
       .then(function(results) {
         console.log(results);
+      },function(error){
+        console.log(error);
       });
     }
 

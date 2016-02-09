@@ -20,6 +20,26 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "src/lib/ionic/scss/ionic";
 @import "src/styles/Main.scss";
+
+.sign-in-background{
+  background-image: url('/images/signin_background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.clear-margins{
+  margin: 0 !important;
+}
+
+.logo{
+  margin-bottom: 10%;
+  display: block;
+  margin-left: auto;
+  width: 50%;
+  margin-right: auto;
+  margin-top: 10%;
+  max-width: 200px;
+}
 .centeredData{
     margin-left: 20%;
     color: gray;

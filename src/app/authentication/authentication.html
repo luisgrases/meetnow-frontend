@@ -1,13 +1,17 @@
-<ion-view class="cool-gray-background" view-title="Sign In">
+<ion-view class="sign-in-background" view-title="Sign In">
     <ion-content>
-        <div class="list">
+
+    <img class="logo" src="/images/meetnowLogoWhite@2x.png" style="width:50%;">
+
+        <div class="list card">
             <label class="item item-input">
-                <input ng-model="vm.loginForm.username" placeholder="Username">
+                <input ng-model="vm.loginForm.username" placeholder="Username" type="text">
             </label>
             <label class="item item-input">
                 <input ng-model="vm.loginForm.password" type="password" name="password" placeholder="Password">
             </label>
         </div>
-        <button class="button button-full button-positive" ng-click="vm.signInUser()">Sign In</button>
+        <button class="button button-full button-positive clear-margins" ng-click="vm.signInUser()">SIGN IN</button>
+        <button class="button button-full button-dark clear-margins" ng-click="vm.goToRegistration()">SIGN UP</button>
     </ion-content>
 </ion-view>

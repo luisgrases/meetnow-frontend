@@ -11,7 +11,9 @@
       'angularMoment',
       'filters',
       'vcRecaptcha',
+
       /* Feature areas */
+      'app.helpers',
       'app.account',
       'app.registration',
       'app.authentication',
