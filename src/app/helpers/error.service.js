@@ -38,6 +38,7 @@
     }
 
     function errorFormatter(error){
+      //check how errors are passed and do something
 
     }
 

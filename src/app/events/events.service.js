@@ -5,10 +5,10 @@
     .module('app.events')
     .factory('EventsService', eventsService);
 
-  eventsService.$inject = ['$http'];
+  eventsService.$inject = ['$http', 'ErrorMessage'];
 
   /* @ngInject */
-  function eventsService($http) {
+  function eventsService($http, ErrorMessage) {
     var _model = {
       all: all,
       remove: remove,
@@ -44,6 +44,7 @@
         console.log(results);
       },function(error){
         console.log(error);
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -51,6 +52,9 @@
       $http.patch('http://localhost:3000/api/events/' + _model.currentEvent.id, event)
       .then(function(results) {
         console.log(results);
+      },function(error){
+        console.log(error);
+        ErrorMessage.showAlert(error.data);
       });
     }      
 
