@@ -5,20 +5,24 @@
     .module('app.contacts.add')
     .controller('ContactsAddController', ContactsAddController);
 
-  ContactsAddController.$inject = ['ContactsService'];
+  ContactsAddController.$inject = ['ContactsService', '$timeout'];
 
   /* @ngInject */
-  function ContactsAddController(ContactsService) {
+  function ContactsAddController(ContactsService, $timeout) {
     var vm = this;
     vm.search = search;
     vm.addContact = addContact;
     vm.ContactsService = ContactsService;
     vm.searchTerm = '';
+    var timer = null
     ////////////////
 
 
     function search() {
-      ContactsService.search(vm.searchTerm);
+      $timeout.cancel(timer);
+      timer = $timeout(function(){
+        ContactsService.search(vm.searchTerm);
+      }, 700);
     }
 
     function addContact(contact){
