@@ -4,16 +4,12 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-
-
-
-
-        <div class="list card">
-            <ion-item class="item-remove-animate item-icon-right" ng-repeat="event in vm.EventsService.results" type="item-text-wrap" ng-click="vm.goToDetailed(event)">
+        <ion-list>
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="event in vm.EventsService.results" type="item-text-wrap">
 
             <div class="row">
               <div class="col col-10 item-icon-left">
-                   <i class="icon ion-unlocked" ng-class="{'ion-locked': event.status == 'full','ion-android-cancel':  event.status == 'canceled' }"></i>
+                   <i class="icon" ng-class="{'ion-locked': event.status == 'full','ion-android-cancel':  event.status == 'canceled', 'ion-unlocked': event.status == 'open' }" ng-click="vm.goToDetailed(event)"></i>
               </div>
 
               <div class="col col-ID">
@@ -22,10 +18,13 @@
               </div>
               <div class="col carsTable__col--action"><a ng-click="ctrl.showEditCarForm(car)" class=" icon-accessory icon ion-chevron-right"></a></div>
             </div>
-                <ion-option-button class="button-assertive" ng-click="vm.remove(  event)">
-                    Delete
+                <ion-option-button class="button-assertive" ng-if="event.status != 'canceled' && event.my_privilege == 'admin'" ng-click="vm.EventsService.cancel(event)">
+                  Cancel
+                </ion-option-button>
+                <ion-option-button class="button-assertive" ng-if="!(event.status != 'canceled' && event.my_privilege == 'admin')" ng-click="vm.EventsService.leave(event)">
+                  Leave
                 </ion-option-button>
             </ion-item>
-        </div>
+        </ion-list>
     </ion-content>
 </ion-view>

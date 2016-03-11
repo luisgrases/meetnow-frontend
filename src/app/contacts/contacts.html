@@ -4,7 +4,7 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-    <div class="item item-divider" ng-show="requestsRecieved.length">
+    <div class="item item-divider" ng-if="requestsRecieved.length > 0">
             Requests Recieved
         </div>
         <ion-list>
@@ -15,7 +15,7 @@
                 </button>
             </ion-item>
         </ion-list>
-        <div class="item item-divider" ng-show="requestsSent.length">
+        <div class="item item-divider" ng-if="requestsSent.length > 0">
             Requests Sent
         </div>
         <ion-list>
@@ -26,7 +26,7 @@
                 </ion-option-button>
             </ion-item>
         </ion-list>
-        <div class="item item-divider" ng-show="friends.length">
+        <div class="item item-divider" ng-if="friends.length > 0">
             Contacts
         </div>
         <ion-list>

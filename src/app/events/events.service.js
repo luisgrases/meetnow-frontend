@@ -11,10 +11,11 @@
   function eventsService($http, ErrorMessage) {
     var _model = {
       all: all,
-      remove: remove,
       create: create,
       update: update,
       get: get,
+      cancel: cancel,
+      leave: leave,
       assist: assist,
       notAssist: notAssist,
       changeMemberPrivilege: changeMemberPrivilege,
@@ -68,8 +69,18 @@
       });
     }
 
-    function remove(event) {
-      events.splice(events.indexOf(event), 1);
+    function cancel(event) {
+      $http.post('http://localhost:3000/api/events/' + event.id + '/cancel')
+      .then(function(results) {
+        console.log(results);
+      });
+    }
+
+    function leave(event) {
+      $http.post('http://localhost:3000/api/events/' + event.id + '/leave')
+      .then(function(results) {
+        console.log(results);
+      });
     }
 
     function get(eventId) {
@@ -86,6 +97,9 @@
       $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assist')
       .then(function(results) {
         console.log(results);
+      }, function(error){
+        console.log(error);
+        ErrorMessage.showAlert(error.data);
       });
     }
 
