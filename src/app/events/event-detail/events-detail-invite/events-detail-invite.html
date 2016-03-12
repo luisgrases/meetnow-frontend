@@ -1,13 +1,11 @@
 <ion-view class="cool-gray-background" hide-tabs='true' view-title="Contacts">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.all" type="item-text-wrap" >
+      <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in friends = (vm.ContactsService.all | friends)" type="item-text-wrap" >
         <h2>{{contact.uid}}</h2>
         <button class="button button-clear button-positive" ng-hide="contact.invited" ng-click="vm.EventsService.inviteContact(contact)">
            Invite
         </button>
-
-
         <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
           Delete
         </ion-option-button>

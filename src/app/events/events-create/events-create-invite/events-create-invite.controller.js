@@ -25,13 +25,11 @@
       contact.hide = true;
     }
     function uninviteContact(contact){
-      
       var index = EventsService.newEvent.users.indexOf(contact);
       if (index > -1) {
         EventsService.newEvent.users.splice(index, 1);
       }
       contact.hide = false;
-      console.log(ContactsService.all);
     }
 
 

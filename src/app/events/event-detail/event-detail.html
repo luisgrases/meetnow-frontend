@@ -29,7 +29,7 @@
         </div>
         <div class="list card">
             <ion-item class="item-icon-left">
-                <i class="icon ion-unlocked" ng-class="{'ion-locked': vm.EventsService.currentEvent.status == 'full','ion-android-cancel':  vm.EventsService.currentEvent.status == 'canceled' }"></i> {{vm.EventsService.currentEvent.status}}
+                <i class="icon" ng-class="{'ion-locked': vm.EventsService.currentEvent.status == 'full','ion-android-cancel': vm.EventsService.currentEvent.status == 'canceled', 'ion-unlocked': vm.EventsService.currentEvent.status == 'open'}"></i> {{vm.EventsService.currentEvent.status}}
             </ion-item>
             <ion-item class="item-icon-left">
                 <i class="icon ion-key energized"></i> {{vm.EventsService.currentEvent.admin}}

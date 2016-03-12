@@ -18,6 +18,7 @@
     }
 
     function signInUser() {
+      vm.loginForm.username = vm.loginForm.username.toLowerCase()
       $auth.submitLogin(vm.loginForm)
         .then(function(response) {
           Session.create(response.id);

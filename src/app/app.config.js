@@ -5,9 +5,10 @@
     .module('app')
     .config(configure);
 
-  configure.$inject = ['$authProvider'];
+  configure.$inject = ['$authProvider', '$ionicConfigProvider'];
 
-  function configure ($authProvider) {
+  function configure ($authProvider, $ionicConfigProvider) {
+    //$ionicConfigProvider.views.maxCache(0);
     $authProvider.configure({
             apiUrl: 'http://localhost:3000'
         });
