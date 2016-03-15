@@ -5,20 +5,21 @@
     .module('app.events.detail')
     .controller('EventsDetailController', EventsDetailController);
 
-  EventsDetailController.$inject = ['EventsService', '$stateParams', '$state', 'Session'];
+  EventsDetailController.$inject = ['EventsService', '$stateParams', '$state', 'Session', 'values', '$scope'];
 
   /* @ngInject */
-  function EventsDetailController(EventsService, $stateParams, $state, Session) {
+  function EventsDetailController(EventsService, $stateParams, $state, Session, values, $scope) {
     var vm = this;
     vm.goToEdit = goToEdit;
     vm.goToInvite = goToInvite;
     vm.goToInvited = goToInvited;
     vm.EventsService = EventsService;
     vm.goToDescription = goToDescription;
+    vm.values = values;
+
+
     ////////////////
     EventsService.get($stateParams.eventId).then(function(){
-      console.log(EventsService.currentEvent);
-
 
     });
 

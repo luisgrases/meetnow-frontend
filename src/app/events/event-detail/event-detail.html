@@ -1,4 +1,9 @@
-<ion-view class="cool-gray-background" hide-tabs='true' view-title="Meet Details">
+<ion-view class="cool-gray-background" hide-tabs='true'>
+  <ion-nav-title>
+    <ion-spinner icon="lines" class="spinner-balanced" ng-if="(vm.values.processing)"></ion-spinner>
+    <span ng-if="!(vm.values.processing)">Meet Details<span>
+  </ion-nav-title>
+
     <ion-nav-buttons side="right">
         <button class="button button-small button-clear white-text icon ion-person-add" ng-click="vm.goToInvite()" ng-hide="vm.EventsService.currentEvent.my_privilege == null"></button>
         <button class="button button-small button-clear white-text icon ion-edit" ng-click="vm.goToEdit()" ng-if="vm.EventsService.currentEvent.my_privilege == 'admin'"></button>
@@ -35,14 +40,14 @@
                 <i class="icon ion-key energized"></i> {{vm.EventsService.currentEvent.admin}}
             </ion-item>
             <ion-item>
-                Last Update </i> <span am-time-ago="vm.EventsService.currentEvent.updated_at"></span>
+                Last update </i> <span am-time-ago="vm.EventsService.currentEvent.updated_at"></span>
             </ion-item>
         </div>
     </ion-content>
     <ion-footer-bar align-title="center">
         <div class="button-bar">
-            <a class="button button-clear" ng-class="{'button-balanced' : vm.EventsService.currentEvent.my_status == 'assisting'}" ng-click="vm.EventsService.assist()">Assist</a>
-            <a class="button button-clear" ng-class="{'button-assertive' : vm.EventsService.currentEvent.my_status == 'not_assisting'}" ng-click="vm.EventsService.notAssist()">Can't assist</a>
+            <a ng-disabled="vm.EventsService.currentEvent.my_status =='assisting'" class="button button-clear" ng-class="{'button-balanced' : vm.EventsService.currentEvent.my_status == 'assisting'}" ng-click="vm.EventsService.assist()">Assist</a>
+            <a ng-disabled="vm.EventsService.currentEvent.my_status =='not_assisting'" class="button button-clear" ng-class="{'button-assertive' : vm.EventsService.currentEvent.my_status =='not_assisting'}" ng-click="vm.EventsService.notAssist()">Can't assist</a>
         </div>
     </ion-footer-bar>
 </ion-view>

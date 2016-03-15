@@ -1,10 +1,18 @@
 (function() {
   angular
-    .module('app.directives')
-    .directive('eventRemover', eventRemover)
+    .module('app')
+    .directive('title', title)
 
-    function eventRemover(){
-      
+    function title(){
+      return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+          title: '@'
+        },
+        template: '<ion-spinner icon="lines" class="spinner-balanced"></ion-spinner>'
+      }
+
     }
 
 })();

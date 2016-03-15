@@ -6,15 +6,16 @@
     .module('app.events')
     .controller('EventsController', EventsController);
 
-  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session'];
+  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session', 'values'];
 
   /* @ngInject */
-  function EventsController(EventsService, $state, ContactsService, Session) {
+  function EventsController(EventsService, $state, ContactsService, Session, values) {
     var vm = this;
     vm.remove = remove;
     vm.transition = transition;
     vm.goToDetailed = goToDetailed;
     vm.EventsService = EventsService;
+    vm.values = values;
 
     EventsService.all();
     Session.fetch();

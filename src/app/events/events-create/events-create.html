@@ -1,6 +1,10 @@
-<ion-view class="cool-gray-background" hide-tabs='true' view-title="Create Meet">
+<ion-view class="cool-gray-background" hide-tabs='true'>
+    <ion-nav-title>
+        <ion-spinner icon="lines" class="spinner-balanced" ng-if="(vm.values.processing)"></ion-spinner>
+    <span ng-if="!(vm.values.processing)">Create Meet<span>
+  </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear white-text" ng-click="vm.create(vm.EventsService.newEvent)">
+        <button class="button button-clear white-text" ng-click="vm.create(vm.EventsService.newEvent)" ng-disbled="(vm.values.processing)">
             Create
         </button>
     </ion-nav-buttons>

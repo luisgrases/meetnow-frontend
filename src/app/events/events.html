@@ -1,4 +1,9 @@
-<ion-view class="cool-gray-background" view-title="Meets">
+<ion-view class="cool-gray-background">
+  <ion-nav-title>
+  <ion-spinner icon="lines" class="spinner-balanced" ng-if="(vm.values.processing)"></ion-spinner>
+    <span ng-if="!(vm.values.processing)">Meets<span>
+  </ion-nav-title>
+
     <ion-nav-buttons side="right">
         <button class="button icon button-clear white-text ion-plus-round" ng-click="vm.transition()">
         </button>

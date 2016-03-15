@@ -5,10 +5,10 @@
     .module('app.events.create')
     .controller('EventsCreateController', EventsCreateController);
 
-  EventsCreateController.$inject = ['EventsService', '$state', '$ionicHistory', 'ContactsService'];
+  EventsCreateController.$inject = ['EventsService', '$state', '$ionicHistory', 'ContactsService', 'values'];
 
   /* @ngInject */
-  function EventsCreateController(EventsService, $state, $ionicHistory, ContactsService) {
+  function EventsCreateController(EventsService, $state, $ionicHistory, ContactsService, values) {
     var vm = this;
     vm.goToInvitePeopleView = goToInvitePeopleView;
     vm.create = create;
@@ -16,6 +16,7 @@
     vm.create = create;
     vm.increaseAssistLimit = increaseAssistLimit;
     vm.decreaseAssistLimit = decreaseAssistLimit;
+    vm.values = values;
     activate();
 
     ////////////////
@@ -45,8 +46,9 @@
     };
 
     function create(event) {
-      EventsService.create(event);
-      $ionicHistory.goBack();
+      EventsService.create(event).then(function(){
+        $ionicHistory.goBack();
+      });
     }
 
     function increaseAssistLimit(){

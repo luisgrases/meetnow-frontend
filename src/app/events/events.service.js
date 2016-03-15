@@ -5,10 +5,10 @@
     .module('app.events')
     .factory('EventsService', eventsService);
 
-  eventsService.$inject = ['$http', 'ErrorMessage'];
+  eventsService.$inject = ['$http', 'ErrorMessage', 'values'];
 
   /* @ngInject */
-  function eventsService($http, ErrorMessage) {
+  function eventsService($http, ErrorMessage, values) {
     var _model = {
       all: all,
       create: create,
@@ -32,20 +32,22 @@
     ////////////////
 
     function all() {
+      values.processing = true;
       $http.get('http://localhost:3000/api/events')
       .then(function(results){
-        console.log(results.data);
+        values.processing = false;
         _model.results = results.data;
       });
     };
 
     function create(event) {
-      $http.post('http://localhost:3000/api/events', event)
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/events', event)
       .then(function(results) {
-        console.log(results);
+        values.processing = false;
       },function(error){
-        console.log(error);
         ErrorMessage.showAlert(error.data);
+        values.processing = false;
       });
     }
 
@@ -94,19 +96,21 @@
     }
 
     function assist() {
+      values.processing = true;
       $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/assist')
       .then(function(results) {
-        console.log(results);
+        values.processing = false;
       }, function(error){
-        console.log(error);
+        values.processing = false;
         ErrorMessage.showAlert(error.data);
       });
     }
 
     function notAssist() {
+      values.processing = true;
       $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assist')
       .then(function(results) {
-        console.log(results);
+        values.processing = false;
       });
     }
 
