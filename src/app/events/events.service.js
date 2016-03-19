@@ -37,6 +37,9 @@
       .then(function(results){
         values.processing = false;
         _model.results = results.data;
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     };
 
@@ -77,6 +80,9 @@
         _model.currentEvent.admin = results.data['admin']['uid'];
         _model.currentEvent.invited_people = results.data['invited_people'];
         console.log(_model.currentEvent.invited_people);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -86,6 +92,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -95,6 +104,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -124,6 +136,8 @@
       $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/not_assist')
       .then(function(results) {
         values.processing = false;
+      }, function(error){
+        values.processing = false;
       });
     }
 
@@ -133,6 +147,9 @@
       .then(function(results) {
         console.log(results);
         values.processing = false;
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -142,6 +159,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 

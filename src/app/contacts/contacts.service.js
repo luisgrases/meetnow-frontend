@@ -5,10 +5,10 @@
     .module('app.contacts')
     .factory('ContactsService', contactsService);
 
-  contactsService.$inject = ['$http', 'values'];
+  contactsService.$inject = ['$http', 'values', 'ErrorMessage'];
 
   /* @ngInject */
-  function contactsService($http, values) {
+  function contactsService($http, values, ErrorMessage) {
     var _model = {
       accept: accept,
       reject: reject,
@@ -34,6 +34,9 @@
         values.processing = false;
         console.log(results.data);
         _model.all = results.data;
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     };
 
@@ -43,6 +46,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -53,6 +59,9 @@
         values.processing = false;
         console.log(results.data);
         _model.searchResults = results.data;
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 
@@ -63,6 +72,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
     function reject(contact) {
@@ -71,6 +83,9 @@
       .then(function(results) {
         values.processing = false;
         console.log(results);
+      }, function(error){
+        values.processing = false;
+        ErrorMessage.showAlert(error.data);
       });
     }
 

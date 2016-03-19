@@ -16,13 +16,15 @@
 
     ////////////////
 
+      function errorHandler(error){
+
+      }
+
      function showAlert(messages) {
-      
        var alertPopup = $ionicPopup.alert({
          title: 'Error',
          template: formatArrayToMessage(messages)
        });
-
        alertPopup.then(function(res) {
        });
     };
@@ -31,10 +33,16 @@
 
     function formatArrayToMessage(array){
       var result = '';
+      console.log(array)
       angular.forEach(array, function(message){
         result += message + '<br>';
-      })
+      });
+      if (result == '') {
+        result = 'An error ocurred, please check your internet connection';
+      }
+        
       return result
+
     }
 
     function errorFormatter(error){
