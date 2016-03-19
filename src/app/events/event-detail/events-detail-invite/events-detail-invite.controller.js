@@ -13,8 +13,23 @@
     vm.EventsService = EventsService;
     vm.ContactsService = ContactsService;
     vm.isInvited = isInvited;
+    vm.processingButtons = [];
+    vm.inviteContact = inviteContact;
+    vm.isContained = isContained;
 
     addInvitedAttribute();
+
+    function inviteContact(contact) {
+      vm.processingButtons.push(contact);
+      EventsService.inviteContact(contact).then(function() {
+        var index =  vm.processingButtons.indexOf(contact);
+        vm.processingButtons.splice(index, 1);
+      });
+    }
+
+    function isContained(array, object){
+      return (array.indexOf(object) != -1) ? true : false;
+    }
 
     
     function addInvitedAttribute(){

@@ -1,4 +1,9 @@
-<ion-view class="cool-gray-background" view-title="Contacts">
+<ion-view class="cool-gray-background">
+    <ion-nav-title>
+        <ion-spinner icon="lines" class="spinner-balanced" ng-if="(vm.values.processing)"></ion-spinner>
+        <span ng-if="!(vm.values.processing)">Contacts<span>
+    </ion-nav-title>
+
     <ion-nav-buttons side="right">
         <button class="button button-clear white-text icon ion-ios-search-strong" ng-click="vm.goToAddContacts()">
         </button>
@@ -9,7 +14,8 @@
         </div>
         <ion-list>
             <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in requestsRecieved =  (vm.ContactsService.all | requestsRecieved)" type="item-text-wrap">
-                <h2>{{contact.uid}}</h2>
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.username}}</p>
                 <button class="button button-positive button-clear" ng-click="vm.requestRecievedActionSheet(contact)">
                   Action
                 </button>
@@ -20,8 +26,9 @@
         </div>
         <ion-list>
             <ion-item class="item-remove-animate" ng-repeat="contact in requestsSent = (vm.ContactsService.all | requestsSent)" type="item-text-wrap">
-                <h2>{{contact.uid}}</h2>
-                <ion-option-button class="button-assertive" ng-click="vm.removeContact(contact)">
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.id}}</p>
+                <ion-option-button class="button-assertive" ng-click="vm.removeContact(contact)" ng-if="!(vm.isContained(vm.processingButtons, contact))">
                     Cancel
                 </ion-option-button>
             </ion-item>
@@ -31,8 +38,9 @@
         </div>
         <ion-list>
             <ion-item class="item-remove-animate item-icon-right" ng-repeat="contact in friends = (vm.ContactsService.all | friends)" type="item-text-wrap" ng-show="contact.accepted">
-                <h2>{{contact.uid}}</h2>
-                <ion-option-button class="button-assertive" ng-click="vm.removeContact(contact)">
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.username}}</p>
+                <ion-option-button class="button-assertive" ng-click="vm.removeContact(contact)" ng-if="!(vm.isContained(vm.processingButtons, contact))">
                     Delete
                 </ion-option-button>
             </ion-item>

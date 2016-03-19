@@ -5,15 +5,18 @@
     .module('app.contacts')
     .controller('ContactsController', ContactsController);
 
-  ContactsController.$inject = ['ContactsService', '$state', '$ionicActionSheet'];
+  ContactsController.$inject = ['ContactsService', '$state', '$ionicActionSheet', 'values', '$ionicListDelegate'];
 
   /* @ngInject */
-  function ContactsController(ContactsService, $state, $ionicActionSheet) {
+  function ContactsController(ContactsService, $state, $ionicActionSheet, values, $ionicListDelegate) {
     var vm = this;  
     vm.goToAddContacts = goToAddContacts;
     vm.ContactsService = ContactsService;
     vm.requestRecievedActionSheet = requestRecievedActionSheet;
     vm.removeContact = removeContact;
+    vm.values = values;
+    vm.processingButtons = [];
+    vm.isContained = isContained;
 
     ////////////////
 
@@ -30,8 +33,16 @@
     }
 
     function removeContact(contact){
-      vm.ContactsService.reject(contact);
-      ContactsService.reloadContacts();
+      vm.processingButtons.push(contact);
+      vm.ContactsService.reject(contact).then(function(){
+        var index =  vm.processingButtons.indexOf(contact);
+        vm.processingButtons.splice(index, 1);
+        $ionicListDelegate.closeOptionButtons();
+      });
+    }
+
+    function isContained(array, object){
+      return (array.indexOf(object) != -1) ? true : false;
     }
 
     function requestRecievedActionSheet(contact){

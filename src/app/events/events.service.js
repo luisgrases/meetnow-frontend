@@ -45,25 +45,34 @@
       return $http.post('http://localhost:3000/api/events', event)
       .then(function(results) {
         values.processing = false;
+        return true;
       },function(error){
         ErrorMessage.showAlert(error.data);
         values.processing = false;
+        return false;
       });
     }
 
     function update(event) {
-      $http.patch('http://localhost:3000/api/events/' + _model.currentEvent.id, event)
+      values.processing = true;
+      return $http.patch('http://localhost:3000/api/events/' + _model.currentEvent.id, event)
       .then(function(results) {
+        values.processing = false;
         console.log(results);
+        return true;
       },function(error){
+        values.processing = false;
         console.log(error);
         ErrorMessage.showAlert(error.data);
+        return false;
       });
     }      
 
     function details() {
+      values.processing = true;
       return $http.get('http://localhost:3000/api/events/' + _model.currentEvent.id)
       .then(function(results) {
+        values.processing = false;
         _model.currentEvent.invited_people_counter = results.data['invited_people_counter'];
         _model.currentEvent.admin = results.data['admin']['uid'];
         _model.currentEvent.invited_people = results.data['invited_people'];
@@ -72,15 +81,19 @@
     }
 
     function cancel(event) {
-      $http.post('http://localhost:3000/api/events/' + event.id + '/cancel')
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/events/' + event.id + '/cancel')
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }
 
     function leave(event) {
-      $http.post('http://localhost:3000/api/events/' + event.id + '/leave')
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/events/' + event.id + '/leave')
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }
@@ -115,15 +128,19 @@
     }
 
     function changeMemberPrivilege(user) {
-      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/change_member_privilege', {user_id : user.id})
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/change_member_privilege', {user_id : user.id})
       .then(function(results) {
         console.log(results);
+        values.processing = false;
       });
     }
 
     function inviteContact(contact) {
-      $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invite_contact', {user_id : contact.id})
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/events/' + _model.currentEvent.id + '/invite_contact', {user_id : contact.id})
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }

@@ -6,16 +6,19 @@
     .module('app.events')
     .controller('EventsController', EventsController);
 
-  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session', 'values'];
+  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session', 'values', '$ionicListDelegate'];
 
   /* @ngInject */
-  function EventsController(EventsService, $state, ContactsService, Session, values) {
+  function EventsController(EventsService, $state, ContactsService, Session, values, $ionicListDelegate) {
     var vm = this;
-    vm.remove = remove;
+    vm.leave = leave;
+    vm.cancel = cancel;
     vm.transition = transition;
     vm.goToDetailed = goToDetailed;
     vm.EventsService = EventsService;
+    vm.processingButtons = [];
     vm.values = values;
+    vm.isContained = isContained;
 
     EventsService.all();
     Session.fetch();
@@ -44,8 +47,26 @@
       $state.go("tab.events.detail", {eventId: event.id});
     };
 
-    function remove(event) {
-      EventsService.remove(event);
+    function cancel(event) {
+      vm.processingButtons.push(event);
+      EventsService.cancel(event).then(function(){
+        var index =  vm.processingButtons.indexOf(event);
+        vm.processingButtons.splice(index, 1);
+        $ionicListDelegate.closeOptionButtons();
+      });
+    }
+
+    function leave(event) {
+      vm.processingButtons.push(event);
+      EventsService.leave(event).then(function(){
+        var index =  vm.processingButtons.indexOf(event);
+        vm.processingButtons.splice(index, 1);
+        $ionicListDelegate.closeOptionButtons();
+      });
+    }
+
+    function isContained(array, object){
+      return (array.indexOf(object) != -1) ? true : false;
     }
   }
 })();

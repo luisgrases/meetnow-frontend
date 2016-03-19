@@ -3,12 +3,9 @@
     <ion-list>
       <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in friends = (vm.ContactsService.all | friends)" type="item-text-wrap" >
         <h2>{{contact.uid}}</h2>
-        <button class="button button-clear button-positive" ng-hide="contact.invited" ng-click="vm.EventsService.inviteContact(contact)">
+        <button class="button button-clear button-positive" ng-hide="contact.invited" ng-click="vm.inviteContact(contact)" ng-disabled="vm.isContained(vm.processingButtons, contact)">
            Invite
         </button>
-        <ion-option-button class="button-assertive" ng-click="vm.remove(event)">
-          Delete
-        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

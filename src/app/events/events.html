@@ -23,10 +23,10 @@
               </div>
               <div class="col carsTable__col--action"><a ng-click="ctrl.showEditCarForm(car)" class=" icon-accessory icon ion-chevron-right"></a></div>
             </div>
-                <ion-option-button class="button-assertive" ng-if="event.status != 'canceled' && event.my_privilege == 'admin'" ng-click="vm.EventsService.cancel(event)">
+                <ion-option-button class="button-assertive" ng-if="event.status != 'canceled' && event.my_privilege == 'admin'" ng-click="vm.cancel(event)" ng-show="!(vm.isContained(vm.processingButtons, event))">
                   Cancel
                 </ion-option-button>
-                <ion-option-button class="button-assertive" ng-if="!(event.status != 'canceled' && event.my_privilege == 'admin')" ng-click="vm.EventsService.leave(event)">
+                <ion-option-button class="button-assertive" ng-if="!(event.status != 'canceled' && event.my_privilege == 'admin')" ng-click="vm.leave(event)" ng-show="!(vm.isContained(vm.processingButtons, event))">
                   Leave
                 </ion-option-button>
             </ion-item>

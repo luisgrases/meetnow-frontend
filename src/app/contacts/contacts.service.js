@@ -5,10 +5,10 @@
     .module('app.contacts')
     .factory('ContactsService', contactsService);
 
-  contactsService.$inject = ['$http'];
+  contactsService.$inject = ['$http', 'values'];
 
   /* @ngInject */
-  function contactsService($http) {
+  function contactsService($http, values) {
     var _model = {
       accept: accept,
       reject: reject,
@@ -28,39 +28,48 @@
     }
 
     function all() {
+      values.processing = true;
       $http.get('http://localhost:3000/api/friendships/all')
       .then(function(results) {
+        values.processing = false;
         console.log(results.data);
         _model.all = results.data;
       });
     };
 
     function addContact(contact){
-      $http.post('http://localhost:3000/api/friendships', contact)
+      values.processing = true;
+      return $http.post('http://localhost:3000/api/friendships', contact)
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }
 
     function search(searchTerm) {
+      values.processing = true;
       $http.get('http://localhost:3000/api/users/search?searchTerm=' + searchTerm)
       .then(function(results) {
+        values.processing = false;
         console.log(results.data);
         _model.searchResults = results.data;
       });
     }
 
-    function remove() {}
     function accept(contact) {
+      values.processing = true;
       console.log(contact)
       $http.post('http://localhost:3000/api/friendships/accept', contact)
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }
     function reject(contact) {
-      $http.delete('http://localhost:3000/api/friendships/' + contact.id)
+      values.processing = true;
+      return $http.delete('http://localhost:3000/api/friendships/' + contact.id)
       .then(function(results) {
+        values.processing = false;
         console.log(results);
       });
     }

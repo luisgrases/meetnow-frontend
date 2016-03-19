@@ -46,8 +46,8 @@
     };
 
     function create(event) {
-      EventsService.create(event).then(function(){
-        $ionicHistory.goBack();
+      EventsService.create(event).then(function(passed){
+        if (passed) { $ionicHistory.goBack(); }
       });
     }
 

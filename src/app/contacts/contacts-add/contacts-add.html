@@ -1,4 +1,8 @@
-<ion-view class="cool-gray-background" hide-tabs='true' view-title="Add Contacts">
+<ion-view class="cool-gray-background" hide-tabs='true'>
+    <ion-nav-title>
+        <ion-spinner icon="lines" class="spinner-balanced" ng-if="(vm.values.processing)"></ion-spinner>
+        <span ng-if="!(vm.values.processing)">Add Contacts<span>
+    </ion-nav-title>
     <ion-content>
         <div class="bar bar-header item-input-inset">
             <label class="item-input-wrapper">
@@ -12,7 +16,7 @@
         <ion-list>
         <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.searchResults" type="item-text-wrap">
                 <h2>{{contact.uid}}</h2>
-                <button class="button button-clear button-balanced icon ion-person-add" ng-click="vm.addContact(contact)">
+                <button class="button button-clear button-balanced icon ion-person-add" ng-click="vm.addContact(contact)" ng-disabled="vm.isContained(vm.processingButtons, contact)">
                 </button>
             </ion-item>
         </ion-list>

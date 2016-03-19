@@ -1,19 +1,27 @@
-(function() {
+ (function() {
   'use strict';
 
   angular
     .module('app.events.detail.edit')
     .controller('EventsDetailEditController', EventsDetailEditController);
 
-  EventsDetailEditController.$inject = ['EventsService', '$stateParams'];
+  EventsDetailEditController.$inject = ['EventsService', '$stateParams', 'values', '$ionicHistory'];
 
   /* @ngInject */
-  function EventsDetailEditController(EventsService, $stateParams) {
+  function EventsDetailEditController(EventsService, $stateParams, values, $ionicHistory) {
     var vm = this;
     vm.EventsService = EventsService;
     vm.editingEvent = angular.copy(EventsService.currentEvent);
     vm.increaseAssistLimit = increaseAssistLimit;
     vm.decreaseAssistLimit = decreaseAssistLimit;
+    vm.update = update;
+    vm.values = values;
+
+    function update(event) {
+      EventsService.update(event).then(function(passed){
+        if (passed) { $ionicHistory.goBack(); }
+      });
+    }
 
     function increaseAssistLimit(){
       if (vm.editingEvent.assist_limit < 200) {
