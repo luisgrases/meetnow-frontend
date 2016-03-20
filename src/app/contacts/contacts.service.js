@@ -17,7 +17,9 @@
       reloadContacts: reloadContacts,
       requestsSentResults: null,
       requestsRecievedResults: null,
-      searchResults: null
+      searchResults: null,
+      all: null
+
     };
     return _model;
 

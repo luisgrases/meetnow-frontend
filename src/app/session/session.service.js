@@ -24,7 +24,7 @@ angular
   }
 
     function fetch() {
-      $http.get('http://localhost:3000/api/users/me')
+      return $http.get('http://localhost:3000/api/users/me')
       .then(function(results){
         vm.current_user = results.data;
         console.log(vm.current_user);

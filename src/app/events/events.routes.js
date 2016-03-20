@@ -21,6 +21,11 @@
 
     $stateProvider.state('tab.events.index', {
       url: '',
+      resolve: {
+        message: function(Session){
+          return Session.fetch();;
+        }
+      },
       templateUrl: 'app/events/events.html',
       controller: 'EventsController as vm'
     });

@@ -33,7 +33,7 @@
 
     function all() {
       values.processing = true;
-      $http.get('http://localhost:3000/api/events')
+      return $http.get('http://localhost:3000/api/events')
       .then(function(results){
         values.processing = false;
         _model.results = results.data;

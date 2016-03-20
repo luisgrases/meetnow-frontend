@@ -15,7 +15,8 @@
         </div>
         <ion-list>
         <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in vm.ContactsService.searchResults" type="item-text-wrap">
-                <h2>{{contact.uid}}</h2>
+                <h2>{{contact.name}}</h2>
+                <p>{{contact.username}}</p>
                 <button class="button button-clear button-balanced icon ion-person-add" ng-click="vm.addContact(contact)" ng-disabled="vm.isContained(vm.processingButtons, contact)">
                 </button>
             </ion-item>

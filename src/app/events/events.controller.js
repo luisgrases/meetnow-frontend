@@ -6,10 +6,10 @@
     .module('app.events')
     .controller('EventsController', EventsController);
 
-  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session', 'values', '$ionicListDelegate'];
+  EventsController.$inject = ['EventsService', '$state', 'ContactsService', 'Session', 'values', '$ionicListDelegate', 'SocketMessageHandler'];
 
   /* @ngInject */
-  function EventsController(EventsService, $state, ContactsService, Session, values, $ionicListDelegate) {
+  function EventsController(EventsService, $state, ContactsService, Session, values, $ionicListDelegate, SocketMessageHandler) {
     var vm = this;
     vm.leave = leave;
     vm.cancel = cancel;
@@ -20,23 +20,15 @@
     vm.values = values;
     vm.isContained = isContained;
 
-    EventsService.all();
-    Session.fetch();
+    EventsService.all().then(function(){
+      EventsService.results.forEach(function(event){
+          SocketMessageHandler.subscribeToEvent(event);
+        })
+    });
+    
     ContactsService.reloadContacts();
 
     ////////////////
-    var d = new Date();
-    console.log(d);
-    var client = new Faye.Client('http://localhost:9292/faye');
-
-    client.subscribe("/current_user/events", function(data) {
-      EventsService.results.push(data.event);
-      
-    });
-
-    client.subscribe("current_user/friendship/accepted", function(data) {
-      ContactsService.all.push(data.contacts);
-    });
 
 
     function transition(){
