@@ -29,7 +29,6 @@
 
     function acceptContact(contact){
       vm.ContactsService.accept(contact);
-      ContactsService.reloadContacts();
     }
 
     function removeContact(contact){

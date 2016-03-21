@@ -19,9 +19,7 @@
 
 
     ////////////////
-    EventsService.get($stateParams.eventId).then(function(){
-
-    });
+    EventsService.get($stateParams.eventId);
 
     function goToEdit(){
       $state.go("tab.events.edit", {eventId: EventsService.currentEvent.id});

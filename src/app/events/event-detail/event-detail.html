@@ -37,7 +37,7 @@
                 <i class="icon" ng-class="{'ion-locked': vm.EventsService.currentEvent.status == 'full','ion-android-cancel': vm.EventsService.currentEvent.status == 'canceled', 'ion-unlocked': vm.EventsService.currentEvent.status == 'open'}"></i> {{vm.EventsService.currentEvent.status}}
             </ion-item>
             <ion-item class="item-icon-left">
-                <i class="icon ion-key energized"></i> {{vm.EventsService.currentEvent.admin}}
+                <i class="icon ion-key energized"></i> {{vm.EventsService.currentEvent.admin.name}}
             </ion-item>
             <ion-item>
                 Last update </i> <span am-time-ago="vm.EventsService.currentEvent.updated_at"></span>

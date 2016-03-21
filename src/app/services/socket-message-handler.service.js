@@ -32,50 +32,68 @@
 
           case 'EVENT_CANCELED':
             var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
             EventsService.results[elementPos].status = 'canceled';
             $rootScope.$apply();
             break;
 
           case 'USER_SUBADMIN':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            var invitedPeople = EventsService.results[elementPos].invited_people;
+            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
+            invitedPeople[userPosition].privilege = 'subadmin';
+            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_privilege = 'subadmin' }
             $rootScope.$apply();
             break;
 
           case 'USER_NOT_SUBADMIN':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            var invitedPeople = EventsService.results[elementPos].invited_people;
+            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
+            invitedPeople[userPosition].privilege = null;
+            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_privilege = null }
             $rootScope.$apply();
             break;
 
           case 'USER_ASSISTING':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            var invitedPeople = EventsService.results[elementPos].invited_people;
+            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
+            invitedPeople[userPosition].status = 'assisting';
+            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(invitedPeople);
+            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_status = 'assisting' }
             $rootScope.$apply();
             break;
 
           case 'USER_NOT_ASSISTING':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            var invitedPeople = EventsService.results[elementPos].invited_people;
+            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
+            invitedPeople[userPosition].status = 'not_assisting';
+            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(invitedPeople);
+            if (Session.current_user.id == data.data.user_id){EventsService.results[elementPos].my_status = 'not_assisting' }
             $rootScope.$apply();
             break;
 
           case 'USER_INVITED':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
+            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
             var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            EventsService.results[elementPos].invited_people.push(data.data.user)
+            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(EventsService.results[elementPos].invited_people);
+            var contactIndex = ContactsService.all.map(function(x) {return x.id; }).indexOf(data.data.user.id);
+            ContactsService.all[contactIndex].invited = true;
             $rootScope.$apply();
             break;
 
           case 'USER_LEFT':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].status = 'canceled';
+            var eventIndex = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            if (data.data.user_id == Session.current_user.id) {
+              EventsService.results.splice(eventIndex, 1)
+            }else{
+              var event = EventsService.results[eventIndex];
+              var userIndex = event.invited_people.map(function(x) {return x.id; }).indexOf(data.data.user_id);
+              event.invited_people.splice(userIndex, 1)
+              event.invited_people_counter = EventsService.invitedPeopleCounter(event.invited_people);
+            }
             $rootScope.$apply();
             break;
             

@@ -22,6 +22,7 @@
       inviteContact: inviteContact,
       results: null,
       currentEvent: null,
+      invitedPeopleCounter: invitedPeopleCounter,
       newEvent: {
         assist_limit: 0,
         users: []
@@ -31,12 +32,39 @@
 
     ////////////////
 
+    function invitedPeopleCounter(invitedPeople){
+      var result = invitedPeople.reduce(function(object, element){
+        console.log(object, 'asdfesf')
+        switch(element.status) {
+
+          case 'assisting':
+            object.assisting ++;
+            break;
+
+          case 'not_assisting':
+            object.not_assisting ++;
+            break;
+
+          case 'pending':
+            object.pending ++;
+            break;
+          
+          default:
+        }
+        return object
+
+      },{assisting: 0, not_assisting: 0, pending: 0 });
+      console.log(result);
+      return result;
+    }
+
     function all() {
       values.processing = true;
       return $http.get('http://localhost:3000/api/events')
       .then(function(results){
         values.processing = false;
         _model.results = results.data;
+         console.log(results.data)
       }, function(error){
         values.processing = false;
         ErrorMessage.showAlert(error.data);
@@ -114,7 +142,6 @@
       for (var i = 0; i < _model.results.length; i++) {
         if (_model.results[i].id === parseInt(eventId)) {
           _model.currentEvent = _model.results[i];
-          return details();
         }
       }
       return null;

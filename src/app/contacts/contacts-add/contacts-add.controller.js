@@ -36,7 +36,6 @@
         var index =  vm.processingButtons.indexOf(contact);
         vm.processingButtons.splice(index, 1);
         search();
-        ContactsService.reloadContacts();
       });
     } 
 
