@@ -5,110 +5,137 @@
     .module('app.services')
     .factory('SocketMessageHandler', SocketMessageHandler);
 
-  SocketMessageHandler.$inject = ['Session', 'EventsService', 'ContactsService', '$rootScope'];
+  SocketMessageHandler.$inject = ['Session', 'EventsService', 'ContactsService', '$rootScope', 'values', '$filter'];
 
   /* @ngInject */
-  function SocketMessageHandler(Session, EventsService, ContactsService, $rootScope) {
+  function SocketMessageHandler(Session, EventsService, ContactsService, $rootScope, values, $filter) {
     var client = new Faye.Client('http://localhost:9292/faye');
+    var subscriptions = [];
+    var currentUserSubscription = null;
     subscribeToMyself();
 
     var _model = {
-      subscribeToEvent : subscribeToEvent
+      subscribeToEvent : subscribeToEvent,
+      unsubscribeAllEvents: unsubscribeAllEvents,
+      unsubscribeToMyself: unsubscribeToMyself
     };
     return _model;
 
     ////////////////
+    function getEvent(eventId) {
+      var eventIndex = EventsService.results.map(function(x) {return x.id; }).indexOf(eventId);
+      return EventsService.results[eventIndex];
+    }
+
+    function getEventInvitedUser(eventId, userId) {
+      var invitedPeople = getEvent(eventId).invited_people;
+      var userIndex = invitedPeople.map(function(x) {return x.id; }).indexOf(userId);
+      return invitedPeople[userIndex];
+    }
+
+    function unsubscribeAllEvents() {
+      subscriptions.forEach(function(subscription) {
+        subscription.cancel();
+      })
+    } 
+
+    function unsubscribeToMyself() {
+      currentUserSubscription.cancel();
+
+    }
 
     function subscribeToEvent(event){
-      client.subscribe("/".concat(event.id), function(data) {
+      var subscription = client.subscribe("/".concat(event.id), function(data) {
+        values.processing = true;
+        var event;
+
         switch(data.message) {
 
           case 'EVENT_GENERAL_INFO_UPDATED':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.id);
-            var objectFound = EventsService.results[elementPos];
-            Object.assign(EventsService.results[elementPos], data.data);
-            $rootScope.$apply();
+            event = getEvent(data.data.id)
+            Object.assign(event, data.data);
+            console.log('event general info changed')
             break;
 
           case 'EVENT_CANCELED':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data);
-            EventsService.results[elementPos].status = 'canceled';
-            $rootScope.$apply();
+            event = getEvent(data.data)
+            event.status = 'canceled';
             break;
 
           case 'USER_SUBADMIN':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
-            var invitedPeople = EventsService.results[elementPos].invited_people;
-            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
-            invitedPeople[userPosition].privilege = 'subadmin';
-            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_privilege = 'subadmin' }
-            $rootScope.$apply();
+            event = getEvent(data.data.event_id);
+            var user = getEventInvitedUser(event.id, data.data.user_id);
+            user.privilege = 'subadmin';
+            if (Session.current_user.id == user.id) {event.my_privilege = 'subadmin' }
             break;
 
           case 'USER_NOT_SUBADMIN':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
-            var invitedPeople = EventsService.results[elementPos].invited_people;
-            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
-            invitedPeople[userPosition].privilege = null;
-            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_privilege = null }
-            $rootScope.$apply();
+            event = getEvent(data.data.event_id);
+            var user = getEventInvitedUser(event.id, data.data.user_id);
+            user.privilege = null;
+            if (Session.current_user.id == user.id) {event.my_privilege = null }
             break;
 
           case 'USER_ASSISTING':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
-            var invitedPeople = EventsService.results[elementPos].invited_people;
-            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
-            invitedPeople[userPosition].status = 'assisting';
-            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(invitedPeople);
-            if (Session.current_user.id == data.data.user_id) {EventsService.results[elementPos].my_status = 'assisting' }
-            $rootScope.$apply();
+            event = getEvent(data.data.event_id);
+            var user = getEventInvitedUser(event.id, data.data.user_id);
+            user.status = 'assisting';
+            event.invited_people_counter = EventsService.invitedPeopleCounter(event.invited_people);
+            if (Session.current_user.id == user.id) {event.my_status = 'assisting' }
             break;
 
           case 'USER_NOT_ASSISTING':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
-            var invitedPeople = EventsService.results[elementPos].invited_people;
-            var userPosition = invitedPeople.map(function(x) {return x.id; }).indexOf(data.data.user_id);
-            invitedPeople[userPosition].status = 'not_assisting';
-            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(invitedPeople);
-            if (Session.current_user.id == data.data.user_id){EventsService.results[elementPos].my_status = 'not_assisting' }
-            $rootScope.$apply();
+            event = getEvent(data.data.event_id);
+            var user = getEventInvitedUser(event.id, data.data.user_id);
+            user.status = 'not_assisting';
+            event.invited_people_counter = EventsService.invitedPeopleCounter(event.invited_people);
+            if (Session.current_user.id == user.id){event.my_status = 'not_assisting' }
             break;
 
           case 'USER_INVITED':
-            var elementPos = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
-            var objectFound = EventsService.results[elementPos];
-            EventsService.results[elementPos].invited_people.push(data.data.user)
-            EventsService.results[elementPos].invited_people_counter = EventsService.invitedPeopleCounter(EventsService.results[elementPos].invited_people);
+            event = getEvent(data.data.event_id);
+            event.invited_people.push(data.data.user)
+            event.invited_people_counter = EventsService.invitedPeopleCounter(event.invited_people);
+            var user = getEventInvitedUser(event.id, data.data.user.id);
             var contactIndex = ContactsService.all.map(function(x) {return x.id; }).indexOf(data.data.user.id);
             ContactsService.all[contactIndex].invited = true;
-            $rootScope.$apply();
             break;
 
           case 'USER_LEFT':
             var eventIndex = EventsService.results.map(function(x) {return x.id; }).indexOf(data.data.event_id);
+            event = EventsService.results[eventIndex];
             if (data.data.user_id == Session.current_user.id) {
               EventsService.results.splice(eventIndex, 1)
+              unsubscribeToEvent(data.data.event_id);
             }else{
-              var event = EventsService.results[eventIndex];
               var userIndex = event.invited_people.map(function(x) {return x.id; }).indexOf(data.data.user_id);
               event.invited_people.splice(userIndex, 1)
               event.invited_people_counter = EventsService.invitedPeopleCounter(event.invited_people);
             }
-            $rootScope.$apply();
             break;
             
           default:
             console.log('error')
-        } 
+        }
+        $rootScope.$apply();
+        event.updated_at = new Date().toISOString();
+        values.processing = false;
+        
       });
+      console.log(subscription)
+      subscriptions.push(subscription);
     }
 
-    function unsuscribeToEvent(event){
-
+    function unsubscribeToEvent(event_id){
+      var subscriptionIndex = subscriptions.map(function(x) {return x._channels; }).indexOf("/".concat(event_id));
+      var subscription = subscriptions[subscriptionIndex];
+      subscription.cancel();
+      subscriptions.splice(subscriptionIndex, 1);
+      console.log('called unsuscribeToEvent')
     }
 
     function subscribeToMyself(){
-      client.subscribe("/".concat(Session.current_user.id), function(data) {
+      currentUserSubscription = client.subscribe("/".concat(Session.current_user.id), function(data) {
         switch(data.message) {
 
           case 'EVENT_INVITATION':
@@ -127,7 +154,7 @@
             break;
           case 'FRIENDSHIP_REMOVED':
             var elementPos = ContactsService.all.map(function(x) {return x.id; }).indexOf(data.data);
-            var objectFound = ContactsService.all.splice(elementPos, 1);
+            ContactsService.all.splice(elementPos, 1);
             $rootScope.$apply()
             break;
             

@@ -6,7 +6,8 @@
   <ion-content>
     <ion-list>
      <ion-item class="item-remove-animate item-button-right" ng-repeat="invitedUser in vm.EventsService.currentEvent.invited_people" ng-show="invitedUser.status == vm.invitedStatus" type="item-text-wrap">
-          <h2>{{invitedUser.uid}}</h2>
+          <h2>{{invitedUser.name}}</h2>
+          <p>{{invitedUser.username}}</p>
           <button class="button button-clear icon ion-key"  ng-class="{'button-energized': invitedUser.privilege == 'admin','button-calm': invitedUser.privilege == 'subadmin' }" ng-hide="vm.EventsService.currentEvent.my_privilege == null && invitedUser.privilege == null" ng-click="vm.changeMemberPrivilege(invitedUser)" ng-disabled="vm.isContained(vm.processingButtons, invitedUser)">
           </button>
       </ion-item>

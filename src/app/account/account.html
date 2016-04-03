@@ -1,8 +1,16 @@
 <ion-view class="cool-gray-background" view-title="Account">
 	<ion-content>
 		<ion-list>
-      <ion-item class="icon ion-person">
-        {{vm.Session.current_user.username}}
+      <ion-item class="item-icon-left">
+        <i class="icon ion-person"></i>
+          {{vm.Session.current_user.name}}
+          <p>{{vm.Session.current_user.username}}</p>  
+      </ion-item>
+      <ion-item ng-click="vm.goToAbout()">
+        About
+      </ion-item>
+      <ion-item ng-click="vm.goToTerms()">
+        Terms and Conditions
       </ion-item>
       <button class="button button-full button-positive" ng-click="vm.signOutUser()">Sign Out</button>
 		</ion-list>

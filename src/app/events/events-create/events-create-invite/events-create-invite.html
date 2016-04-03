@@ -5,7 +5,8 @@
               Invited
           </div>
           <ion-item class="item-button-right" ng-repeat="contact in vm.EventsService.newEvent.users">
-              {{contact.uid}}
+              <h2>{{contact.name}}</h2>
+              <p>{{contact.username}}</p>
                <button class="button button-assertive button-clear icon ion-ios-minus-outline" ng-click="vm.uninviteContact(contact)">
             </button>
           </ion-item>
@@ -13,7 +14,8 @@
               Contacts
           </div>
           <ion-item class="item-button-right" ng-repeat="contact in friends = (vm.ContactsService.all | friends)" ng-hide="contact.hide">    
-            {{contact.uid}}
+            <h2>{{contact.name}}</h2>
+            <p>{{contact.username}}</p>
             <button class="button button-assertive button-clear icon ion-ios-plus-outline" ng-click="vm.inviteContact(contact)">
             </button>
           </ion-item>

@@ -14,6 +14,7 @@
     vm.addContact = addContact;
     vm.ContactsService = ContactsService;
     vm.searchTerm = '';
+    ContactsService.searchResults = [];
     vm.values = values;
     vm.isContained = isContained;
     vm.processingButtons = [];
@@ -35,7 +36,6 @@
       ContactsService.addContact(contact).then(function(){
         var index =  vm.processingButtons.indexOf(contact);
         vm.processingButtons.splice(index, 1);
-        search();
       });
     } 
 

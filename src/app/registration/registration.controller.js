@@ -5,12 +5,13 @@
   .module('app.registration')
   .controller('RegistrationController', RegistrationController);
 
-  RegistrationController.$inject = ['$auth', 'vcRecaptchaService', '$ionicPopup', 'ErrorMessage', '$rootScope', 'Session', '$state'];
+  RegistrationController.$inject = ['$auth', '$ionicPopup', 'ErrorMessage', '$rootScope', 'Session', '$state'];
 
   /* @ngInject */
-  function RegistrationController($auth, vcRecaptchaService, $ionicPopup, ErrorMessage, $rootScope, Session, $state) {
+  function RegistrationController($auth, $ionicPopup, ErrorMessage, $rootScope, Session, $state) {
     var vm = this;
     vm.registerUser = registerUser;
+    vm.captcha = null;
 
     function registerUser(){
       $auth.submitRegistration(vm.registrationForm)
@@ -25,8 +26,9 @@
           });
         })
         .catch(function(resp) {
-            ErrorMessage.showAlert(resp.data.errors.full_messages);
-          });
-    };    
+          ErrorMessage.showAlert(resp.data.errors.full_messages);
+        });
+    };
   }
+
 })();

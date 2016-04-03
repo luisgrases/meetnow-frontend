@@ -13,7 +13,7 @@
             Requests Recieved
         </div>
         <ion-list>
-            <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in requestsRecieved =  (vm.ContactsService.all | requestsRecieved)" type="item-text-wrap">
+            <ion-item class="item-remove-animate item-button-right contacts-padding" ng-repeat="contact in requestsRecieved =  (vm.ContactsService.all | requestsRecieved)" type="item-text-wrap">
                 <h2>{{contact.name}}</h2>
                 <p>{{contact.username}}</p>
                 <button class="button button-positive button-clear" ng-click="vm.requestRecievedActionSheet(contact)">

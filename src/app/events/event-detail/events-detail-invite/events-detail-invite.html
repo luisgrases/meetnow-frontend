@@ -2,7 +2,8 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-button-right" ng-repeat="contact in friends = (vm.ContactsService.all | friends)" type="item-text-wrap" >
-        <h2>{{contact.uid}}</h2>
+        <h2>{{contact.name}}</h2>
+        <p>{{contact.username}}</p>
         <button class="button button-clear button-positive" ng-hide="contact.invited" ng-click="vm.inviteContact(contact)" ng-disabled="vm.isContained(vm.processingButtons, contact)">
            Invite
         </button>

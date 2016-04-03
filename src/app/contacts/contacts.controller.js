@@ -34,9 +34,8 @@
     function removeContact(contact){
       vm.processingButtons.push(contact);
       vm.ContactsService.reject(contact).then(function(){
-        var index =  vm.processingButtons.indexOf(contact);
-        vm.processingButtons.splice(index, 1);
         $ionicListDelegate.closeOptionButtons();
+
       });
     }
 

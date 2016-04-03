@@ -29,6 +29,8 @@
       all();
     }
 
+
+
     function all() {
       values.processing = true;
       $http.get('http://localhost:3000/api/friendships/all')
@@ -47,7 +49,9 @@
       return $http.post('http://localhost:3000/api/friendships', contact)
       .then(function(results) {
         values.processing = false;
-        console.log(results);
+        _model.all.push(results.data);
+        var elementPos = _model.searchResults.map(function(x) {return x.id; }).indexOf(results.data.id);
+        _model.searchResults.splice(elementPos, 1);
       }, function(error){
         values.processing = false;
         ErrorMessage.showAlert(error.data);
@@ -73,7 +77,7 @@
       $http.post('http://localhost:3000/api/friendships/accept', contact)
       .then(function(results) {
         values.processing = false;
-        console.log(results);
+        contact.accepted = true;
       }, function(error){
         values.processing = false;
         ErrorMessage.showAlert(error.data);
@@ -84,6 +88,8 @@
       return $http.delete('http://localhost:3000/api/friendships/' + contact.id)
       .then(function(results) {
         values.processing = false;
+        var index =  _model.all.indexOf(contact);
+        _model.all.splice(index, 1);
         console.log(results);
       }, function(error){
         values.processing = false;
