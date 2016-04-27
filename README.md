@@ -1,5 +1,3 @@
-This is an alternative project structure for the [Ionic Framework](http://ionicframework.com/) demonstrated with the ionic tabs starter.
-
 ## How to use this project
 
 To use this starter create a new project folder (e.g. 'myApp') for your app and clone this repository into it.
